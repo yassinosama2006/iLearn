@@ -49,7 +49,7 @@
                 codeCheckSub: "ادفع فوراً واستلم الكود مباشرة في منتصف الشاشة بدون انتظار",
                 codeCheckDetailsTitle: "تفاصيل الكود المطلوب",
                 codePayMethodTitle: "اختر طريقة الدفع الفوري:",
-                subVisa: "بطاقة ائتمانية / فيزا",
+                subVisa: "بطاقة ائتمانية / دفع آمن عبر Paymob",
                 subWallet: "محفظة إلكترونية (فودافون كاش، أورنج، إلخ)",
                 codeVisaTitle: "إدخال بيانات الكارت",
                 codeWalletTitle: "إدخال بيانات المحفظة",
@@ -95,7 +95,7 @@
                 optCodeCatPhys: "فيزياء",
                 optCodeCatMath: "رياضيات",
                 optCodeCatChem: "كيمياء",
-                lblCodeImg: " اختر صورة الغلاف للكود/المحاضرة من جهازك:",
+                lblCodeImg: "اختر صورة الغلاف للكود/المحاضرة من جهازك:",
                 btnAddCodeSubmit: "إضافة الكود للمتجر",
                 admCodesListTitle: "قائمة أكواد المدرسين الحالية وإدارتها",
                 thCode1: "الصورة",
@@ -190,7 +190,7 @@
                 codeCheckSub: "Pay now and get your code directly on screen without waiting",
                 codeCheckDetailsTitle: "Requested Code Details",
                 codePayMethodTitle: "Choose Instant Payment Method:",
-                subVisa: "Credit Card / Visa",
+                subVisa: "Credit Card / Secure Paymob",
                 subWallet: "Mobile Wallet (Vodafone Cash, Orange, etc.)",
                 codeVisaTitle: "Enter Card Details",
                 codeWalletTitle: "Enter Wallet Details",
@@ -552,7 +552,7 @@
 
         let cart = [];
         let currentShippingCost = 35;
-        let selectedMainPaymentMethod = 'فيزا / بطاقة ائتمان';
+        let selectedMainPaymentMethod = 'فيزا / بطاقة ائتمان عبر Paymob';
         let currentUser = null;
 
         let activeBookSubject = 'physics';
@@ -898,7 +898,7 @@
         }
 
         function selectPaymentMethod(type, el) {
-            selectedMainPaymentMethod = (type === 'visa') ? (currentLang === 'ar' ? 'فيزا / بطاقة ائتمان' : 'Visa / Credit Card') : (currentLang === 'ar' ? 'محفظة إلكترونية' : 'Mobile Wallet');
+            selectedMainPaymentMethod = (type === 'visa') ? (currentLang === 'ar' ? 'فيزا / بطاقة ائتمان عبر Paymob' : 'Visa / Credit Card via Paymob') : (currentLang === 'ar' ? 'محفظة إلكترونية' : 'Mobile Wallet');
             document.querySelectorAll('#shippingPage .payment-radio-card').forEach(o => o.classList.remove('active'));
             el.classList.add('active');
             document.getElementById('visaFieldsSection').style.display = (type === 'visa') ? 'block' : 'none';
@@ -951,7 +951,7 @@
             });
             cart = [];
             renderCartItems();
-            showToast(currentLang === 'ar' ? 'تم تقديم الطلب بنجاح!' : 'Order submitted successfully!');
+            showToast(currentLang === 'ar' ? 'تم تقديم الطلب بنجاح عبر Paymob!' : 'Order submitted successfully via Paymob!');
             switchPage('myOrdersPage');
         }
 
@@ -1048,7 +1048,7 @@
                 img: tempBookImageUrl || 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&q=80' 
             });
 
-            showToast(currentLang === 'ar' ?'تمت إضافة الكتاب بنجاح!' : 'Book added successfully!');
+            showToast(currentLang === 'ar' ? 'تمت إضافة الكتاب بنجاح مع الصورة!' : 'Book added successfully with image!');
             renderAdminData();
             e.target.reset();
             document.getElementById('bookImagePreviewContainer').style.display = 'none';
@@ -1078,7 +1078,7 @@
                 img: tempCodeImageUrl || 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&q=80'
             });
 
-            showToast(currentLang === 'ar' ? 'تمت إضافة الكود بنجاح !' : 'Code added successfully!');
+            showToast(currentLang === 'ar' ? 'تمت إضافة الكود بنجاح مع الصورة!' : 'Code added successfully with image!');
             renderAdminData();
             e.target.reset();
             document.getElementById('codeImagePreviewContainer').style.display = 'none';

@@ -3,607 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>I-LEARN STORE</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="./Screenshot 2026-08-04 015947.png">
+    <title>KAAF STORE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* ===== DARK THEME ===== */
-        [data-theme="dark"] {
-            --primary: #1a3a8f;
-            --primary-light: #2e5bd1;
-            --accent: #ff6b35;
-            --accent-glow: rgba(255, 107, 53, 0.4);
-            --bg-body: #080c14;
-            --bg-card: rgba(255, 255, 255, 0.03);
-            --header-bg: rgba(8, 12, 20, 0.85);
-            --text-main: #f8fafc;
-            --text-sub: rgba(255, 255, 255, 0.7);
-            --text-muted: rgba(255, 255, 255, 0.5);
-            --glass: rgba(255, 255, 255, 0.06);
-            --glass-border: rgba(255, 255, 255, 0.12);
-            --shadow-3d: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            --drawer-bg: #0f172a;
-        }
-
-        /* ===== LIGHT THEME ===== */
-        [data-theme="light"] {
-            --primary: #1a3a8f;
-            --primary-light: #2e5bd1;
-            --accent: #ff6b35;
-            --accent-glow: rgba(255, 107, 53, 0.25);
-            --bg-body: #f1f5f9;
-            --bg-card: #ffffff;
-            --header-bg: rgba(255, 255, 255, 0.85);
-            --text-main: #0f172a;
-            --text-sub: #475569;
-            --text-muted: #64748b;
-            --glass: rgba(0, 0, 0, 0.04);
-            --glass-border: rgba(0, 0, 0, 0.08);
-            --shadow-3d: 0 20px 40px -10px rgba(15, 23, 42, 0.12);
-            --drawer-bg: #ffffff;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        body {
-            font-family: 'Cairo', 'Poppins', sans-serif;
-            background: var(--bg-body);
-            color: var(--text-main);
-            overflow-x: hidden;
-        }
-
-        /* ===== TOAST NOTIFICATION ===== */
-        .toast-container {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        [dir="ltr"] .toast-container {
-            right: auto;
-            left: 25px;
-        }
-
-        .toast {
-            background: var(--drawer-bg);
-            border: 1px solid var(--accent);
-            color: var(--text-main);
-            padding: 1rem 1.4rem;
-            border-radius: 14px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(15px);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 0.95rem;
-            font-weight: 700;
-            min-width: 280px;
-            animation: toastIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
-        }
-
-        .toast i {
-            color: var(--accent);
-            font-size: 1.3rem;
-        }
-
-        .toast.hide {
-            animation: toastOut 0.4s forwards;
-        }
-
-        @keyframes toastIn {
-            from { opacity: 0; transform: translateY(100px) scale(0.8); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-
-        @keyframes toastOut {
-            from { opacity: 1; transform: translateY(0) scale(1); }
-            to { opacity: 0; transform: translateY(50px) scale(0.8); }
-        }
-
-        /* ===== POPUP CENTER SCREEN ===== */
-        .code-popup-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(8px);
-            z-index: 99999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: 0.3s ease;
-        }
-
-        .code-popup-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .code-popup-card {
-            background: var(--drawer-bg);
-            border: 2px solid var(--accent);
-            width: 90%;
-            max-width: 480px;
-            border-radius: 24px;
-            padding: 2.5rem 2rem;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.5), 0 0 30px var(--accent-glow);
-            text-align: center;
-            transform: scale(0.8);
-            transition: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .code-popup-overlay.active .code-popup-card {
-            transform: scale(1);
-        }
-
-        .code-popup-icon {
-            width: 70px;
-            height: 70px;
-            background: rgba(255, 107, 53, 0.15);
-            border: 2px solid var(--accent);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: var(--accent);
-            margin: 0 auto 1.2rem;
-            box-shadow: 0 0 20px var(--accent-glow);
-        }
-
-        .code-box-display {
-            background: var(--bg-body);
-            border: 2px dashed var(--accent);
-            padding: 1rem;
-            border-radius: 14px;
-            font-size: 1.4rem;
-            font-weight: 900;
-            color: var(--accent);
-            letter-spacing: 2px;
-            margin: 1.2rem 0;
-            user-select: all;
-        }
-
-        .announcement-bar {
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            color: white;
-            text-align: center;
-            padding: 0.5rem 1rem;
-            font-size: 0.85rem;
-            font-weight: 700;
-        }
-
-        .header {
-            position: sticky;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            background: var(--header-bg);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--glass-border);
-        }
-
-        .header-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0.8rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo-3d {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-        }
-
-        .logo-icon {
-            width: 42px;
-            height: 42px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 1.2rem;
-            color: white;
-            box-shadow: 0 4px 12px rgba(26, 58, 143, 0.3);
-        }
-
-        .logo-text { font-size: 1.3rem; font-weight: 700; }
-        .logo-text span { color: var(--accent); }
-
-        .nav { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
-        .nav a {
-            color: var(--text-sub);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            cursor: pointer;
-            padding: 0.5rem 0;
-        }
-        .nav a:hover, .nav a.active { color: var(--accent); }
-
-        .header-actions { display: flex; gap: 0.75rem; align-items: center; }
-
-        .btn-icon {
-            width: 42px; height: 42px; border-radius: 50%;
-            background: var(--glass); border: 1px solid var(--glass-border);
-            color: var(--text-main); display: flex; align-items: center;
-            justify-content: center; cursor: pointer; position: relative;
-        }
-        .btn-icon:hover { background: var(--primary); color: white; }
-
-        .btn-lang {
-            padding: 0.4rem 0.8rem;
-            border-radius: 20px;
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            color: var(--text-main);
-            font-weight: 700;
-            cursor: pointer;
-            font-size: 0.85rem;
-        }
-        .btn-lang:hover { background: var(--accent); color: white; }
-
-        .cart-count {
-            position: absolute; top: -4px; right: -4px;
-            background: var(--accent); color: white; font-size: 0.7rem;
-            font-weight: 700; width: 18px; height: 18px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-        }
-
-        /* ===== HERO SECTION ===== */
-        .hero-section {
-            position: relative;
-            padding: 4rem 2rem 2rem;
-            max-width: 1300px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            align-items: center;
-            gap: 3rem;
-        }
-
-        @media (max-width: 992px) {
-            .hero-section {
-                grid-template-columns: 1fr;
-                text-align: center;
-                padding-top: 2rem;
-            }
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 0.4rem 1.2rem;
-            border-radius: 50px;
-            background: rgba(255, 107, 53, 0.12);
-            border: 1px solid rgba(255, 107, 53, 0.3);
-            color: var(--accent);
-            font-weight: 700;
-            font-size: 0.85rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-title {
-            font-size: 3.2rem;
-            font-weight: 900;
-            line-height: 1.25;
-            margin-bottom: 1.2rem;
-            letter-spacing: -0.5px;
-        }
-
-        .highlight-word {
-            background: linear-gradient(135deg, #ff6b35 0%, #ffc107 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
-            font-weight: 900;
-            filter: drop-shadow(0px 4px 12px rgba(255, 107, 53, 0.3));
-        }
-
-        .hero-subtitle {
-            color: var(--text-sub);
-            font-size: 1.15rem;
-            line-height: 1.8;
-            margin-bottom: 2.2rem;
-            max-width: 580px;
-        }
-
-        @media (max-width: 992px) {
-            .hero-subtitle { margin-left: auto; margin-right: auto; }
-            .hero-title { font-size: 2.4rem; }
-        }
-
-        .hero-image-wrapper {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .hero-card-preview {
-            width: 100%;
-            max-width: 420px;
-            border-radius: 28px;
-            overflow: hidden;
-            background: var(--bg-card);
-            border: 1px solid var(--glass-border);
-            box-shadow: var(--shadow-3d);
-            position: relative;
-        }
-
-        .hero-card-preview img {
-            width: 100%;
-            height: 380px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .floating-badge {
-            position: absolute;
-            bottom: -20px;
-            right: -20px;
-            background: var(--drawer-bg);
-            border: 1px solid var(--glass-border);
-            padding: 1rem 1.5rem;
-            border-radius: 18px;
-            box-shadow: var(--shadow-3d);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        [dir="ltr"] .floating-badge { right: auto; left: -20px; }
-
-        .stats-bar {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            max-width: 1300px;
-            margin: 2rem auto 4rem;
-            padding: 0 2rem;
-        }
-
-        .stat-item {
-            background: var(--bg-card);
-            border: 1px solid var(--glass-border);
-            padding: 1.5rem;
-            border-radius: 18px;
-            text-align: center;
-        }
-
-        .stat-number { font-size: 2rem; font-weight: 800; color: var(--accent); margin-bottom: 0.2rem; }
-        .stat-label { color: var(--text-muted); font-size: 0.85rem; font-weight: 600; }
-
-        .filter-container { display: flex; justify-content: center; gap: 0.8rem; margin-bottom: 2rem; flex-wrap: wrap; }
-        .filter-btn { padding: 0.5rem 1.2rem; border-radius: 20px; border: 1px solid var(--glass-border); background: var(--glass); color: var(--text-main); font-weight: 600; cursor: pointer; font-size: 0.9rem; }
-        .filter-btn.active, .filter-btn:hover { background: var(--accent); color: white; border-color: var(--accent); }
-
-        .page { display: none; animation: fadeIn 0.4s ease-in-out; min-height: 80vh; }
-        .page.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        .section { padding: 3rem 2rem; max-width: 1300px; margin: 0 auto; }
-        .section-header { text-align: center; margin-bottom: 2.5rem; }
-        .section-title { font-size: 2.2rem; font-weight: 800; margin-bottom: 0.5rem; }
-        .section-subtitle { color: var(--text-muted); }
-
-        .books-grid, .codes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.8rem; }
-        
-        .code-card, .book-card {
-            background: var(--bg-card); border: 1px solid var(--glass-border);
-            border-radius: 20px; padding: 1.2rem; box-shadow: var(--shadow-3d);
-            display: flex; flex-direction: column; justify-content: space-between;
-        }
-        
-        .code-tag {
-            font-size: 0.75rem; background: rgba(255, 107, 53, 0.15); color: var(--accent);
-            padding: 0.2rem 0.6rem; border-radius: 8px; font-weight: 700; display: inline-block; margin-bottom: 0.5rem;
-        }
-
-        .book-image-wrapper { width: 100%; height: 200px; border-radius: 12px; overflow: hidden; margin-bottom: 1rem; }
-        .book-image-wrapper img { width: 100%; height: 100%; object-fit: cover; }
-        .book-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.4rem; }
-        .book-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--glass-border); padding-top: 0.8rem; margin-top: 1rem; }
-        .book-price { font-size: 1.15rem; font-weight: 800; color: var(--accent); }
-
-        .btn-submit-shipping, .btn-add-cart {
-            padding: 0.75rem 1.5rem; border-radius: 12px; background: linear-gradient(135deg, var(--accent), #ff9f7f);
-            color: white; border: none; font-weight: 800; font-size: 0.95rem; cursor: pointer;
-            display: inline-flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 6px 18px var(--accent-glow);
-            text-decoration: none;
-        }
-        .btn-secondary { background: var(--glass); border: 1px solid var(--glass-border); color: var(--text-main); box-shadow: none; }
-        .btn-secondary:hover { background: var(--primary); color: white; }
-
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.8rem; margin-top: 1rem; }
-        .feature-card { background: var(--bg-card); border: 1px solid var(--glass-border); padding: 2rem; border-radius: 20px; text-align: center; box-shadow: var(--shadow-3d); }
-        .feature-icon { width: 60px; height: 60px; background: var(--glass); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.2rem; font-size: 1.8rem; color: var(--accent); }
-
-        .shipping-layout { display: grid; grid-template-columns: 1fr 360px; gap: 2rem; align-items: start; }
-        @media (max-width: 992px) { .shipping-layout { grid-template-columns: 1fr; } }
-
-        .shipping-form-card { background: var(--bg-card); border: 1px solid var(--glass-border); padding: 2rem; border-radius: 20px; box-shadow: var(--shadow-3d); }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-        @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
-
-        .form-group { margin-bottom: 1.2rem; }
-        .form-group label { display: block; margin-bottom: 0.4rem; font-weight: 700; font-size: 0.88rem; }
-        .form-group input, .form-group select, .form-group textarea {
-            width: 100%; padding: 0.75rem 1rem; border-radius: 12px; border: 1px solid var(--glass-border);
-            background: var(--bg-body); color: var(--text-main); font-family: inherit; font-size: 0.9rem;
-        }
-
-        .payment-methods { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.8rem; margin-top: 0.5rem; }
-        .payment-option { border: 1px solid var(--glass-border); background: var(--bg-body); border-radius: 12px; padding: 0.8rem; text-align: center; cursor: pointer; font-size: 0.85rem; font-weight: 700; }
-        .payment-option.active { border-color: var(--accent); background: rgba(255, 107, 53, 0.1); color: var(--accent); }
-
-        .shipping-sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
-        .sidebar-card { background: var(--bg-card); border: 1px solid var(--glass-border); padding: 1.5rem; border-radius: 20px; }
-        .calc-box { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid var(--glass-border); font-size: 0.9rem; }
-
-        /* Auth Styles */
-        .auth-container { max-width: 440px; margin: 2rem auto; }
-        .auth-tabs { display: flex; border-bottom: 1px solid var(--glass-border); margin-bottom: 1.5rem; }
-        .auth-tab { flex: 1; text-align: center; padding: 0.8rem; font-weight: 700; cursor: pointer; color: var(--text-muted); border-bottom: 2px solid transparent; }
-        .auth-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
-
-        /* Cart Drawer */
-        .cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(5px); z-index: 2000; opacity: 0; visibility: hidden; transition: 0.3s ease; }
-        .cart-overlay.active { opacity: 1; visibility: visible; }
-        .cart-drawer { position: fixed; top: 0; bottom: 0; width: 360px; max-width: 100%; background: var(--drawer-bg); z-index: 2001; padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; transition: 0.3s ease; }
-        [dir="rtl"] .cart-drawer { right: -400px; }
-        [dir="rtl"] .cart-overlay.active .cart-drawer { right: 0; }
-        [dir="ltr"] .cart-drawer { left: -400px; }
-        [dir="ltr"] .cart-overlay.active .cart-drawer { left: 0; }
-
-        .cart-items-list { overflow-y: auto; flex-grow: 1; margin: 1rem 0; display: flex; flex-direction: column; gap: 0.8rem; }
-        .cart-item { display: flex; justify-content: space-between; align-items: center; background: var(--bg-card); padding: 0.8rem; border-radius: 10px; border: 1px solid var(--glass-border); }
-
-        /* CUSTOM MODAL STYLES */
-        .custom-modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(5px);
-            z-index: 9999; display: flex; align-items: center; justify-content: center;
-            opacity: 0; visibility: hidden; transition: 0.3s ease;
-        }
-        .custom-modal-overlay.active { opacity: 1; visibility: visible; }
-        .custom-modal {
-            background: var(--drawer-bg); border: 1px solid var(--glass-border);
-            width: 90%; max-width: 450px; border-radius: 20px; padding: 2rem;
-            box-shadow: var(--shadow-3d); transform: scale(0.9); transition: 0.3s ease;
-        }
-        .custom-modal-overlay.active .custom-modal { transform: scale(1); }
-        .custom-modal h3 { font-size: 1.2rem; margin-bottom: 1.2rem; color: var(--text-main); display: flex; align-items: center; gap: 8px; }
-        .custom-modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 1.5rem; }
-
-        /* ADMIN DASHBOARD STYLES */
-        .admin-container { max-width: 1200px; margin: 0 auto; padding: 2rem 1rem; }
-        .admin-stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; margin-bottom: 2rem; }
-        .admin-stat-card { background: var(--bg-card); border: 1px solid var(--glass-border); padding: 1.5rem; border-radius: 16px; box-shadow: var(--shadow-3d); display: flex; align-items: center; gap: 1rem; }
-        .admin-stat-icon { width: 50px; height: 50px; border-radius: 12px; background: rgba(255, 107, 53, 0.15); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; }
-        .admin-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem; overflow-x: auto; }
-        .admin-tab-btn { background: transparent; border: none; color: var(--text-sub); font-weight: 700; padding: 0.6rem 1.2rem; border-radius: 10px; cursor: pointer; font-size: 0.95rem; font-family: inherit; }
-        .admin-tab-btn.active { background: var(--accent); color: white; }
-        .admin-panel-content { display: none; }
-        .admin-panel-content.active { display: block; }
-        .admin-card-box { background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: 16px; padding: 1.8rem; box-shadow: var(--shadow-3d); margin-bottom: 2rem; }
-        .admin-table { width: 100%; border-collapse: collapse; text-align: right; margin-top: 1rem; }
-        [dir="ltr"] .admin-table { text-align: left; }
-        .admin-table th, .admin-table td { padding: 0.9rem; border-bottom: 1px solid var(--glass-border); font-size: 0.9rem; }
-        .admin-table th { color: var(--text-muted); font-weight: 700; }
-        .badge-role { padding: 0.2rem 0.6rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700; }
-        .badge-role.admin { background: rgba(26, 58, 143, 0.2); color: var(--primary-light); }
-        .badge-role.user { background: rgba(255, 107, 53, 0.15); color: var(--accent); }
-        .btn-action-sm { padding: 0.35rem 0.7rem; border-radius: 8px; border: 1px solid var(--glass-border); background: var(--glass); color: var(--text-main); font-size: 0.8rem; cursor: pointer; font-weight: 600; margin-left: 5px; }
-        .btn-action-sm:hover { background: var(--accent); color: white; border-color: var(--accent); }
-        .btn-danger-sm:hover { background: #ef4444 !important; border-color: #ef4444 !important; color: white !important; }
-
-        /* CONTACT PAGE STYLES */
-        .contact-page-container { max-width: 1100px; margin: 0 auto; padding: 2rem 1rem; }
-        .contact-new-wrapper { display: grid; grid-template-columns: 1fr 360px; gap: 2rem; align-items: start; }
-        @media (max-width: 900px) { .contact-new-wrapper { grid-template-columns: 1fr; } }
-        .contact-card-box { background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2.5rem; box-shadow: var(--shadow-3d); }
-        .contact-subtitle-text { color: var(--text-sub); font-size: 0.98rem; text-align: center; margin-bottom: 2rem; line-height: 1.6; }
-        .phone-input-group { display: flex; align-items: center; border: 1px solid var(--glass-border); border-radius: 10px; background: var(--bg-body); padding: 0 0.8rem; gap: 0.6rem; }
-        .phone-input-group:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
-        .country-flag-box { display: flex; align-items: center; gap: 0.3rem; cursor: pointer; }
-        .country-code-text { font-weight: 700; font-size: 0.9rem; color: var(--text-main); }
-        [dir="rtl"] .country-code-text { padding-left: 0.5rem; border-left: 1px solid var(--glass-border); }
-        [dir="ltr"] .country-code-text { padding-right: 0.5rem; border-right: 1px solid var(--glass-border); }
-        .phone-input-group input { border: none !important; background: transparent !important; padding: 0.8rem 0 !important; width: 100%; outline: none; color: var(--text-main); }
-        .btn-send-orange { width: 100%; background: linear-gradient(135deg, #ffb338, var(--accent)); color: white; border: none; border-radius: 10px; padding: 0.9rem; font-size: 1rem; font-weight: 700; cursor: pointer; margin-top: 1rem; box-shadow: 0 4px 15px var(--accent-glow); transition: transform 0.2s ease, box-shadow 0.2s ease; }
-        .btn-send-orange:hover { transform: translateY(-2px); box-shadow: 0 6px 20px var(--accent-glow); }
-        .contact-info-sidebar { padding: 2rem; }
-        .info-item-row { display: flex; align-items: center; gap: 1.2rem; margin-bottom: 1.8rem; }
-        .info-circle-icon { width: 46px; height: 46px; border-radius: 50%; background: var(--bg-body); border: 1px solid var(--glass-border); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: var(--accent); flex-shrink: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.03); }
-        .info-details-col { display: flex; flex-direction: column; gap: 0.2rem; }
-        .info-label-sm { font-size: 0.78rem; color: var(--text-muted); }
-        .info-val-orange { font-size: 0.92rem; font-weight: 700; color: var(--accent); text-decoration: none; }
-        .info-divider { border: none; border-top: 1px solid var(--glass-border); margin: 1.5rem 0; }
-        .social-follow-box { text-align: center; }
-        .social-follow-box p { font-size: 0.85rem; color: var(--text-sub); margin-bottom: 1rem; }
-        .social-circle-links { display: flex; justify-content: center; gap: 0.8rem; }
-        .social-round-btn { width: 36px; height: 36px; border-radius: 50%; background: var(--bg-body); border: 1px solid var(--glass-border); color: var(--text-main); display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 0.9rem; transition: all 0.2s ease; box-shadow: 0 2px 5px rgba(0,0,0,0.03); }
-        .social-round-btn:hover { background: var(--accent); color: white; border-color: var(--accent); }
-
-        /* FOOTER */
-        .footer { background: var(--bg-card); border-top: 1px solid var(--glass-border); padding: 4rem 2rem 1.5rem; margin-top: 5rem; }
-        .footer-container { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 2.5rem; margin-bottom: 3rem; }
-        @media (max-width: 768px) { .footer-container { grid-template-columns: 1fr; } }
-        .footer-brand p { color: var(--text-sub); font-size: 0.9rem; line-height: 1.7; margin: 1rem 0 1.5rem; }
-        .social-links { display: flex; gap: 0.8rem; }
-        .social-btn { width: 38px; height: 38px; border-radius: 50%; background: var(--glass); border: 1px solid var(--glass-border); color: var(--text-main); display: flex; align-items: center; justify-content: center; text-decoration: none; }
-        .social-btn:hover { background: var(--accent); color: white; border-color: var(--accent); }
-        .footer-title { font-size: 1.1rem; font-weight: 800; margin-bottom: 1.2rem; color: var(--text-main); }
-        .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
-        .footer-links a { color: var(--text-sub); text-decoration: none; font-size: 0.9rem; font-weight: 600; cursor: pointer; }
-        .footer-links a:hover { color: var(--accent); }
-        .footer-bottom { border-top: 1px solid var(--glass-border); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; max-width: 1300px; margin: 0 auto; flex-wrap: wrap; gap: 1rem; }
-
-        @media (max-width: 768px) { .nav { display: none; } }
-    </style>
+    <link rel="stylesheet" href="./style.css">
+    
 </head>
 <body>
 
     <div class="toast-container" id="toastContainer"></div>
 
+   
     <div class="code-popup-overlay" id="codePopupOverlay">
         <div class="code-popup-card">
             <div class="code-popup-icon"><i class="fas fa-ticket-alt"></i></div>
-            <h3 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 0.5rem;">تم شراء الكود بنجاح!</h3>
-            <p style="font-size: 0.9rem; color: var(--text-sub); line-height: 1.6;">إليك كود التفعيل الخاص بك، يمكنك نسخه واستخدامه فوراً داخل المنصة:</p>
+            <h3 id="popTitle" style="font-size: 1.3rem; font-weight: 800; margin-bottom: 0.5rem;">تم شراء الكود بنجاح!</h3>
+            <p id="popDesc" style="font-size: 0.9rem; color: var(--text-sub); line-height: 1.6;">إليك كود التفعيل الخاص بك، يمكنك نسخ واستخدامه فوراً داخل المنصة:</p>
             <div class="code-box-display" id="popupCodeText">I-LEARN-984210</div>
             <div style="display: flex; gap: 10px;">
-                <button onclick="copyGeneratedCode()" class="btn-submit-shipping btn-secondary" style="flex: 1;"><i class="fas fa-copy"></i> نسخ الكود</button>
-                <button onclick="closeCodePopup()" class="btn-submit-shipping" style="flex: 1;"><i class="fas fa-check"></i> حسناً، فهمت</button>
+                <button onclick="copyGeneratedCode()" id="popCopyBtn" class="btn-submit-shipping btn-secondary" style="flex: 1;"><i class="fas fa-copy"></i> نسخ الكود</button>
+                <button onclick="closeCodePopup()" id="popOkBtn" class="btn-submit-shipping" style="flex: 1;"><i class="fas fa-check"></i> حسناً، فهمت</button>
             </div>
         </div>
     </div>
 
-    <div class="custom-modal-overlay" id="customEditModal">
-        <div class="custom-modal">
-            <h3 id="modalTitleText"><i class="fas fa-edit" style="color: var(--accent);"></i> تعديل البيانات</h3>
-            <div class="form-group" style="margin-top: 1rem;">
-                <label id="modalInputLabel">العنوان الجديد</label>
-                <input type="text" id="modalInputVal" placeholder="أدخل العنوان الجديد...">
-            </div>
-            <div class="custom-modal-actions">
-                <button class="btn-submit-shipping btn-secondary" onclick="closeCustomModal()" style="padding: 0.5rem 1rem; font-size: 0.9rem;">إلغاء</button>
-                <button class="btn-submit-shipping" onclick="confirmCustomModal()" style="padding: 0.5rem 1.2rem; font-size: 0.9rem;">حفظ التعديل</button>
+    
+    <div class="code-popup-overlay" id="logoutModalOverlay">
+        <div class="code-popup-card" style="max-width: 420px; text-align: right;" id="logoutCardBox">
+            <div class="code-popup-icon" style="margin: 0 0 1rem 0;"><i class="fas fa-sign-out-alt"></i></div>
+            <h3 id="logoutModalTitle" style="font-size: 1.25rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--text-main);">تسجيل الخروج</h3>
+            <p id="logoutModalMessage" style="font-size: 0.95rem; color: var(--text-sub); line-height: 1.6; margin-bottom: 1.8rem;">هل ترغب في تسجيل الخروج من الحساب؟</p>
+            <div style="display: flex; gap: 10px;">
+                <button onclick="confirmLogout()" id="logoutYesBtn" class="btn-submit-shipping" style="flex: 1; background: #ef4444; box-shadow: 0 6px 18px rgba(239, 68, 68, 0.4);">نعم، خروج</button>
+                <button onclick="closeLogoutModal()" id="logoutCancelBtn" class="btn-submit-shipping btn-secondary" style="flex: 1;">إلغاء</button>
             </div>
         </div>
     </div>
 
-    <div class="announcement-bar">
+    
+    <div class="custom-modal-overlay" id="trackingModal">
+        <div class="custom-modal" style="max-width: 520px;">
+            <h3 id="trackModalHeader"><i class="fas fa-shipping-fast" style="color: #2563eb;"></i> تتبع الشحنة - <span id="trackModalOrderId">#1001</span></h3>
+            
+            <div style="background: var(--bg-body); padding: 1rem; border-radius: 12px; margin-top: 1rem; border: 1px solid var(--glass-border);">
+                <div style="font-size: 0.85rem; color: var(--text-muted);"><span id="lblTrackAddr">عنوان الشحن:</span> <span id="trackModalAddress" style="color: var(--text-main); font-weight: 700;">-</span></div>
+                <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;"><span id="lblTrackPay">طريقة الدفع:</span> <span id="trackModalPayment" style="color: #2563eb; font-weight: 700;">-</span></div>
+            </div>
+
+            <div class="tracking-timeline" id="trackingTimelineContainer">
+                <div class="tracking-step completed">
+                    <div class="tracking-icon"><i class="fas fa-check"></i></div>
+                    <div class="tracking-info">
+                        <h4 id="tStep1Title">تم تأكيد الطلب والدفع</h4>
+                        <p id="tStep1Desc">تم استلام طلبك وجاري مراجعته</p>
+                    </div>
+                </div>
+                <div class="tracking-step active">
+                    <div class="tracking-icon"><i class="fas fa-box"></i></div>
+                    <div class="tracking-info">
+                        <h4 id="tStep2Title">جاري تجهيز الشحنة</h4>
+                        <p id="tStep2Desc">يتم الآن تغليف طلبك وتجهيزه للخروج</p>
+                    </div>
+                </div>
+                <div class="tracking-step">
+                    <div class="tracking-icon"><i class="fas fa-truck"></i></div>
+                    <div class="tracking-info">
+                        <h4 id="tStep3Title">تم التسليم لشركة الشحن</h4>
+                        <p id="tStep3Desc">الشحنة في الطريق إليك الآن</p>
+                    </div>
+                </div>
+                <div class="tracking-step">
+                    <div class="tracking-icon"><i class="fas fa-home"></i></div>
+                    <div class="tracking-info">
+                        <h4 id="tStep4Title">تم التوصيل</h4>
+                        <p id="tStep4Desc">تم توصيل الطلب بنجاح إلى عنوانك</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="custom-modal-actions" style="margin-top: 2rem;">
+                <button class="btn-submit-shipping" id="trackCloseBtn" onclick="closeTrackingModal()" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">إغلاق</button>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="announcement-bar" id="topAnnouncementBar">
+        <i class="fas fa-bullhorn"></i>
         <span id="txt-announcement">🚀 شحن سريع لجميع المحافظات + شراء فورى لأكواد المنصات التعليمية! (يجب تسجيل الدخول لإتمام أي شراء)</span>
     </div>
 
-    <!-- Header -->
+    
     <header class="header">
         <div class="header-content">
             <div class="logo-3d" onclick="switchPage('homePage')">
-                <div class="logo-icon">I</div>
-                <div class="logo-text">LEARN <span>STORE</span></div>
+                <div class="logo-icon"><i class="fas fa-graduation-cap"></i></div>
+                <div class="logo-text">KAAF <span>STORE</span></div>
             </div>
 
             <nav>
@@ -612,13 +108,31 @@
                     <li><a onclick="switchPage('booksPage')" id="nav-booksPage">الكتب والملخصات</a></li>
                     <li><a onclick="switchPage('teacherCodesPage')" id="nav-teacherCodesPage">أكواد المدرسين 🔥</a></li>
                     <li><a onclick="switchPage('shippingPage')" id="nav-shippingPage">إتمام الشراء</a></li>
+                    <li><a onclick="switchPage('myOrdersPage')" id="nav-myOrdersPage">طلباتي 📦</a></li>
                     <li><a onclick="switchPage('adminPage')" id="nav-adminPage" style="color: var(--accent);">لوحة الأدمن ⚙️</a></li>
-                    <li><a onclick="switchPage('contactPage')" id="nav-contactPage">اتصل بنا</a></li>
                 </ul>
             </nav>
 
-            <div class="header-actions">
+            <div class="header-actions" style="position: relative;">
                 <button class="btn-icon" onclick="openAuthModal()" title="تسجيل الدخول / الحساب" id="authBtnIcon"><i class="fas fa-user"></i></button>
+                
+                
+                <div style="position: relative;">
+                    <button class="btn-icon" onclick="toggleNotifDropdown()" title="الإشعارات والتنبيهات"><i class="fas fa-bell"></i><span class="notif-count" id="notifCountBadge">1</span></button>
+                    <div class="notif-dropdown" id="notifDropdownMenu">
+                        <div style="font-weight: 800; font-size: 0.9rem; margin-bottom: 0.8rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem; display: flex; justify-content: space-between; align-items: center;">
+                            <span>الإشعارات والتنبيهات</span>
+                            <span style="font-size: 0.75rem; color: var(--accent); cursor: pointer;" onclick="clearNotifications()">حذف الكل</span>
+                        </div>
+                        <div id="notifListContainer" style="max-height: 220px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px;">
+                            <div class="notif-item">
+                                <i class="fas fa-info-circle"></i>
+                                <div>مرحباً بك في متجر كاف ستور! تصفح أفضل الكتب والأكواد التعليمية.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <button class="btn-lang" onclick="toggleLanguage()" id="langBtn">EN</button>
                 <button class="btn-icon" onclick="toggleTheme()"><i class="fas fa-sun" id="themeIcon"></i></button>
                 <button class="btn-icon" onclick="toggleCart()"><i class="fas fa-shopping-cart"></i><span class="cart-count" id="cartCount">0</span></button>
@@ -626,45 +140,45 @@
         </div>
     </header>
 
-    <!-- ================= AUTH PAGE / MODAL ================= -->
+    
     <main class="page" id="authPage">
         <section class="section">
-            <div class="auth-container shipping-form-card">
+            <div class="auth-container checkout-card">
                 <div class="auth-tabs">
                     <div class="auth-tab active" onclick="switchAuthTab('login')" id="tabLoginBtn">تسجيل الدخول</div>
                     <div class="auth-tab" onclick="switchAuthTab('signup')" id="tabSignupBtn">إنشاء حساب جديد</div>
                 </div>
 
-                <!-- LOGIN FORM -->
+                
                 <form id="loginFormSection" onsubmit="handleLoginSubmit(event)">
-                    <div class="form-group">
-                        <label>البريد الإلكتروني *</label>
-                        <input type="email" id="loginEmail" required placeholder="name@example.com">
+                    <div class="input-icon-group">
+                        <i class="fas fa-envelope input-icon"></i>
+                        <input type="email" id="loginEmail" required placeholder="البريد الإلكتروني">
                     </div>
-                    <div class="form-group">
-                        <label>كلمة المرور *</label>
-                        <input type="password" id="loginPassword" required placeholder="********">
+                    <div class="input-icon-group">
+                        <i class="fas fa-lock input-icon"></i>
+                        <input type="password" id="loginPassword" required placeholder="كلمة المرور">
                     </div>
-                    <button type="submit" class="btn-submit-shipping" style="width: 100%; margin-top: 1rem;">
+                    <button type="submit" id="btnLoginSubmit" class="btn-pay-blue" style="width: 100%; margin-top: 1rem;">
                         <i class="fas fa-sign-in-alt"></i> دخول للمنصة
                     </button>
                 </form>
 
-                <!-- SIGNUP FORM -->
+                
                 <form id="signupFormSection" style="display: none;" onsubmit="handleSignupSubmit(event)">
-                    <div class="form-group">
-                        <label>الاسم بالكامل *</label>
-                        <input type="text" id="signupName" required placeholder="أحمد محمد">
+                    <div class="input-icon-group">
+                        <i class="fas fa-user input-icon"></i>
+                        <input type="text" id="signupName" required placeholder="الاسم بالكامل">
                     </div>
-                    <div class="form-group">
-                        <label>البريد الإلكتروني *</label>
-                        <input type="email" id="signupEmail" required placeholder="name@example.com">
+                    <div class="input-icon-group">
+                        <i class="fas fa-envelope input-icon"></i>
+                        <input type="email" id="signupEmail" required placeholder="البريد الإلكتروني">
                     </div>
-                    <div class="form-group">
-                        <label>كلمة المرور *</label>
-                        <input type="password" id="signupPassword" required placeholder="********">
+                    <div class="input-icon-group">
+                        <i class="fas fa-lock input-icon"></i>
+                        <input type="password" id="signupPassword" required placeholder="كلمة المرور">
                     </div>
-                    <button type="submit" class="btn-submit-shipping" style="width: 100%; margin-top: 1rem;">
+                    <button type="submit" id="btnSignupSubmit" class="btn-pay-blue" style="width: 100%; margin-top: 1rem;">
                         <i class="fas fa-user-plus"></i> إنشاء الحساب فوراً
                     </button>
                 </form>
@@ -672,7 +186,6 @@
         </section>
     </main>
 
-    <!-- ================= 1. HOME PAGE ================= -->
     <main class="page active" id="homePage">
         <section class="hero-section">
             <div class="hero-content">
@@ -686,12 +199,12 @@
                 </h1>
                 
                 <p class="hero-subtitle" id="home-subtitle">
-                    اطلب الملازم المعتمدة، الكتب الخارجية، أو اشتري أكواد المنصات لأشهر المدرسين فورياً بدون انتظار.
+                    اختر المادة ثم المدرس المفضل لديك، واطلب كتبك أو أكوادك التعليمية فورياً.
                 </p>
 
                 <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
                     <button onclick="switchPage('booksPage')" class="btn-submit-shipping">
-                        <i class="fas fa-book-open"></i> <span id="txt-browse-btn">تصفح المكتبة</span>
+                        <i class="fas fa-book-open"></i> <span id="txt-browse-btn">تصفح الكتب والملازم</span>
                     </button>
                     <button onclick="switchPage('teacherCodesPage')" class="btn-submit-shipping btn-secondary">
                         <i class="fas fa-key"></i> <span id="txt-codes-btn">أكواد المنصات</span>
@@ -701,13 +214,13 @@
 
             <div class="hero-image-wrapper">
                 <div class="hero-card-preview">
-                    <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=600&q=80" alt="Book Preview">
+                    <img src="./Screenshot 2026-08-04 015947.png" alt="Book Preview">
                 </div>
                 <div class="floating-badge">
                     <i class="fas fa-bolt" style="font-size: 1.8rem; color: var(--accent);"></i>
                     <div>
-                        <div style="font-weight: 800; font-size: 0.9rem;" id="float-title">تسليم إلكتروني فورى</div>
-                        <div style="font-size: 0.75rem; color: var(--text-sub);" id="float-subtitle">لجميع أكواد المدرسين</div>
+                        <div style="font-weight: 800; font-size: 0.9rem;" id="float-title">اختر المادة والمدرس</div>
+                        <div style="font-size: 0.75rem; color: var(--text-sub);" id="float-subtitle">بكل سهولة وسرعة</div>
                     </div>
                 </div>
             </div>
@@ -716,15 +229,15 @@
         <div class="stats-bar">
             <div class="stat-item">
                 <div class="stat-number">+10,000</div>
-                <div class="stat-label" id="stat1">طالب يثق بنا</div>
+                <div class="stat-label" id="statLbl1">طالب يثق بنا</div>
             </div>
             <div class="stat-item">
                 <div class="stat-number">+500</div>
-                <div class="stat-label" id="stat2">ملزمة وكتاب متاح</div>
+                <div class="stat-label" id="statLbl2">ملزمة وكتاب متاح</div>
             </div>
             <div class="stat-item">
                 <div class="stat-number">24/7</div>
-                <div class="stat-label" id="stat3">تسليم فورى للأكواد</div>
+                <div class="stat-label" id="statLbl3">تسليم فورى للأكواد</div>
             </div>
         </div>
 
@@ -732,88 +245,159 @@
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-bolt"></i></div>
-                    <h3 id="feat0-title">أكواد فورية</h3>
-                    <p style="color: var(--text-sub); font-size: 0.9rem;" id="feat0-desc">استلم كود الشرح أو المراجعة مباشرة بعد الدفع.</p>
+                    <h3 id="feat1Title">أكواد فورية</h3>
+                    <p id="feat1Desc" style="color: var(--text-sub); font-size: 0.9rem;">استلم كود الشرح أو المراجعة مباشرة بعد الدفع.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-shipping-fast"></i></div>
-                    <h3 style="margin-bottom: 0.5rem;" id="feat1-title">توصيل سريع</h3>
-                    <p style="color: var(--text-sub); font-size: 0.9rem;" id="feat1-desc">شحن المذكرات والكتب لجميع المحافظات خلال 24 - 48 ساعة.</p>
+                    <h3 id="feat2Title" style="margin-bottom: 0.5rem;">توصيل سريع</h3>
+                    <p id="feat2Desc" style="color: var(--text-sub); font-size: 0.9rem;">شحن المذكرات والكتب لجميع المحافظات خلال 24 - 48 ساعة.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-credit-card"></i></div>
-                    <h3 style="margin-bottom: 0.5rem;" id="feat2-title">دفع إلكتروني سهل</h3>
-                    <p style="color: var(--text-sub); font-size: 0.9rem;" id="feat2-desc">ادفع عن طريق فودافون كاش، إنستا باي، أو عند الاستلام.</p>
+                    <h3 id="feat3Title" style="margin-bottom: 0.5rem;">دفع إلكتروني سهل</h3>
+                    <p id="feat3Desc" style="color: var(--text-sub); font-size: 0.9rem;">ادفع عن طريق الفيزا أو المحفظة الإلكترونية بسهولة وآمان.</p>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- ================= 2. BOOKS PAGE ================= -->
     <main class="page" id="booksPage">
         <section class="section">
             <div class="section-header">
-                <h2 class="section-title" id="books-title">المكتبة الرقمية</h2>
-                <p class="section-subtitle" id="books-subtitle">اختر كتبك وملخصاتك وأضفها إلى السلة فوراً</p>
+                <h2 class="section-title" id="books-title">المكتبة الرقمية والملخصات</h2>
+                <p id="books-sub" class="section-subtitle">اختر المادة أولاً، ثم حدد المدرس لعرض ملازمه وكتبه</p>
             </div>
 
-            <div class="filter-container" id="booksFilterContainer">
-                <button class="filter-btn active" onclick="filterBooks('all', this)" id="flt-all">الكل</button>
-                <button class="filter-btn" onclick="filterBooks('physics', this)" id="flt-physics">الفيزياء</button>
-                <button class="filter-btn" onclick="filterBooks('math', this)" id="flt-math">الرياضيات</button>
-                <button class="filter-btn" onclick="filterBooks('chemistry', this)" id="flt-chem">الكيمياء</button>
+            <div id="bookSubjectsSection">
+                <div class="filter-container">
+                    <button class="filter-btn active" onclick="selectBookSubject('physics', this)"><i class="fas fa-atom"></i> <span id="subPhys">الفيزياء</span></button>
+                    <button class="filter-btn" onclick="selectBookSubject('math', this)"><i class="fas fa-square-root-alt"></i> <span id="subMath">الرياضيات</span></button>
+                    <button class="filter-btn" onclick="selectBookSubject('chemistry', this)"><i class="fas fa-flask"></i> <span id="subChem">الكيمياء</span></button>
+                </div>
+                <div id="bookTeachersContainer" class="teachers-grid"></div>
             </div>
 
-            <div class="books-grid" id="allBooksGrid"></div>
+            <div id="bookProductsSection" style="display: none;">
+                <button onclick="backToBookSubjects()" id="backBooksBtn" class="btn-submit-shipping btn-secondary" style="margin-bottom: 2rem;">
+                    <i class="fas fa-arrow-right"></i> الرجوع لاختيار المواد والمدرسين
+                </button>
+                <div class="section-header" style="margin-bottom: 1.5rem;">
+                    <h3 id="selectedBookTeacherTitle" style="font-size: 1.6rem; color: var(--accent);">كتب وملازم المدرس</h3>
+                </div>
+                <div class="books-grid" id="teacherBooksGrid"></div>
+            </div>
         </section>
     </main>
 
-    <!-- ================= 3. TEACHER CODES PAGE ================= -->
     <main class="page" id="teacherCodesPage">
         <section class="section">
             <div class="section-header">
                 <h2 class="section-title" id="codes-title">أكواد منصات المدرسين</h2>
-                <p class="section-subtitle" id="codes-subtitle">شراء أكواد المحاضرات، الحصص المنفردة، وااشتراكات الشهور فورياً</p>
+                <p id="codes-sub" class="section-subtitle">اختر المادة، ثم اختر المدرس لشراء أكواد الحصص والاشتراكات فورياً</p>
             </div>
 
-            <div class="filter-container" id="codesFilterContainer">
-                <button class="filter-btn active" onclick="filterCodes('all', this)" id="cflt-all">كل المواد</button>
-                <button class="filter-btn" onclick="filterCodes('physics', this)" id="cflt-physics">فيزياء</button>
-                <button class="filter-btn" onclick="filterCodes('math', this)" id="cflt-math">رياضيات</button>
-                <button class="filter-btn" onclick="filterCodes('chemistry', this)" id="cflt-chem">كيمياء</button>
+            <div id="codeSubjectsSection">
+                <div class="filter-container">
+                    <button class="filter-btn active" onclick="selectCodeSubject('physics', this)"><i class="fas fa-atom"></i> <span id="codeSubPhys">الفيزياء</span></button>
+                    <button class="filter-btn" onclick="selectCodeSubject('math', this)"><i class="fas fa-square-root-alt"></i> <span id="codeSubMath">الرياضيات</span></button>
+                    <button class="filter-btn" onclick="selectCodeSubject('chemistry', this)"><i class="fas fa-flask"></i> <span id="codeSubChem">الكيمياء</span></button>
+                </div>
+                <div id="codeTeachersContainer" class="teachers-grid"></div>
             </div>
 
-            <div class="codes-grid" id="teacherCodesGrid"></div>
+            <div id="codeProductsSection" style="display: none;">
+                <button onclick="backToCodeSubjects()" id="backCodesBtn" class="btn-submit-shipping btn-secondary" style="margin-bottom: 2rem;">
+                    <i class="fas fa-arrow-right"></i> الرجوع لاختيار المواد والمدرسين
+                </button>
+                <div class="section-header" style="margin-bottom: 1.5rem;">
+                    <h3 id="selectedCodeTeacherTitle" style="font-size: 1.6rem; color: var(--accent);">أكواد ومحاضرات المدرس</h3>
+                </div>
+                <div class="codes-grid" id="teacherCodesGrid"></div>
+            </div>
         </section>
     </main>
 
-    <!-- ================= 4. DEDICATED CODE CHECKOUT PAGE ================= -->
     <main class="page" id="codeCheckoutPage">
         <section class="section">
             <div class="section-header">
-                <h2 class="section-title">شراء كود المنصة الفوري ⚡</h2>
-                <p class="section-subtitle">ادفع فوراً واستلم الكود مباشرة في منتصف الشاشة بدون تسجيل بيانات شحن</p>
+                <h2 class="section-title" id="codeCheckTitle">شراء كود المنصة الفوري ⚡</h2>
+                <p id="codeCheckSub" class="section-subtitle">ادفع فوراً واستلم الكود مباشرة في منتصف الشاشة بدون انتظار</p>
             </div>
 
             <div style="max-width: 600px; margin: 0 auto;">
-                <div class="shipping-form-card">
-                    <h3 style="font-size:1.15rem; margin-bottom:1rem; color: var(--accent); display:flex; align-items:center; gap:8px;">
+                <div class="checkout-card">
+                    <h3 id="codeCheckDetailsTitle" style="font-size:1.15rem; margin-bottom:1rem; color: var(--accent); display:flex; align-items:center; gap:8px;">
                         <i class="fas fa-ticket-alt"></i> تفاصيل الكود المطلوب
                     </h3>
                     <div id="checkoutCodeDetails" style="background: var(--bg-body); padding: 1rem; border-radius: 12px; border: 1px solid var(--glass-border); margin-bottom: 1.5rem;">
                     </div>
 
-                    <h3 style="font-size:1.1rem; margin-bottom:0.8rem;">اختر طريقة الدفع الفوري:</h3>
-                    <div class="payment-methods" style="margin-bottom: 1.5rem;">
-                        <div class="payment-option active" onclick="selectCodePayment('vodafone', this)">
-                            <i class="fas fa-mobile-alt"></i> فودافون كاش
+                    <h3 id="codePayMethodTitle" style="font-size:1.1rem; margin-bottom:0.8rem;">اختر طريقة الدفع الفوري:</h3>
+                    
+                    <div class="payment-options-list">
+                        <div class="payment-radio-card active" onclick="selectCodePaymentMethod('visa', this)">
+                            <div class="payment-radio-left">
+                                <div class="custom-radio"></div>
+                                <div>
+                                    <div class="payment-title-main">Visa / Credit Card</div>
+                                    <div class="payment-subtitle-sub" id="subVisa">بطاقة ائتمانية / فيزا</div>
+                                </div>
+                            </div>
+                            <div class="payment-badge-logo"><i class="fas fa-credit-card"></i> Visa / MasterCard</div>
                         </div>
-                        <div class="payment-option" onclick="selectCodePayment('instapay', this)">
-                            <i class="fas fa-university"></i> انستا باي InstaPay
+
+                        <div class="payment-radio-card" onclick="selectCodePaymentMethod('wallet', this)">
+                            <div class="payment-radio-left">
+                                <div class="custom-radio"></div>
+                                <div>
+                                    <div class="payment-title-main">Mobile Wallet</div>
+                                    <div class="payment-subtitle-sub" id="subWallet">محفظة إلكترونية (فودافون كاش، أورنج، إلخ)</div>
+                                </div>
+                            </div>
+                            <div class="payment-badge-logo" style="color:#e60000;"><i class="fas fa-wallet"></i> Wallet</div>
                         </div>
                     </div>
 
-                    <button onclick="confirmInstantCodePurchase()" class="btn-submit-shipping" style="width: 100%;">
+                    <div id="codeVisaFieldsSection" style="margin-top: 1.2rem; background: var(--bg-body); padding: 1.2rem; border-radius: 12px; border: 1px solid var(--glass-border);">
+                        <h4 id="codeVisaTitle" style="font-size: 0.95rem; margin-bottom: 1rem; color: var(--accent); display:flex; align-items:center; gap:8px;">
+                            <i class="fas fa-credit-card"></i> إدخال بيانات الكارت
+                        </h4>
+                        <div class="input-icon-group">
+                            <i class="fas fa-user input-icon"></i>
+                            <input type="text" id="cHolder" placeholder="الاسم على الكارت">
+                        </div>
+                        <div class="input-icon-group">
+                            <i class="fas fa-credit-card input-icon"></i>
+                            <input type="text" id="cNum" maxlength="19" placeholder="رقم الكارت (16 رقم)">
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                            <div class="input-icon-group">
+                                <i class="fas fa-calendar-alt input-icon"></i>
+                                <input type="text" maxlength="5" placeholder="MM/YY">
+                            </div>
+                            <div class="input-icon-group">
+                                <i class="fas fa-lock input-icon"></i>
+                                <input type="password" maxlength="4" placeholder="CVV">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="codeWalletFieldsSection" style="display: none; margin-top: 1.2rem; background: var(--bg-body); padding: 1.2rem; border-radius: 12px; border: 1px solid var(--glass-border);">
+                        <h4 id="codeWalletTitle" style="font-size: 0.95rem; margin-bottom: 1rem; color: #2563eb; display:flex; align-items:center; gap:8px;">
+                            <i class="fas fa-mobile-alt"></i> إدخال بيانات المحفظة
+                        </h4>
+                        <div class="input-icon-group">
+                            <i class="fas fa-phone input-icon"></i>
+                            <input type="tel" id="cPhone" placeholder="رقم المحفظة">
+                        </div>
+                        <div class="input-icon-group">
+                            <i class="fas fa-key input-icon"></i>
+                            <input type="password" id="cPin" placeholder="كلمة مرور المحفظة / PIN">
+                        </div>
+                    </div>
+
+                    <button onclick="confirmInstantCodePurchase()" id="btnInstantPay" class="btn-pay-blue" style="width: 100%; margin-top: 1.5rem;">
                         <i class="fas fa-bolt"></i> إتمام الدفع واستلام الكود فوراً
                     </button>
                 </div>
@@ -821,97 +405,192 @@
         </section>
     </main>
 
-    <!-- ================= 5. SHIPPING / CHECKOUT PAGE ================= -->
     <main class="page" id="shippingPage">
-        <section class="section">
-            <div class="section-header">
-                <h2 class="section-title" id="ship-title">إتمام شراء الكتب والملازم</h2>
-                <p class="section-subtitle" id="ship-subtitle">أدخل بيانات الشحن والعنوان لتوصيل الملازم الورقية لباب البيت</p>
+        <section class="section" style="padding-top: 2rem;">
+            <div class="checkout-stepper">
+                <div class="step-item">
+                    <div class="step-number"><i class="fas fa-check"></i></div>
+                    <span class="step-label-en">Cart</span>
+                    <span class="step-label-ar">السلة</span>
+                </div>
+                <div class="step-item active">
+                    <div class="step-number">2</div>
+                    <span class="step-label-en">Checkout</span>
+                    <span class="step-label-ar">الدفـع</span>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <span class="step-label-en">Payment</span>
+                    <span class="step-label-ar">الدفع</span>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <span class="step-label-en">Done</span>
+                    <span class="step-label-ar">تم الطلب</span>
+                </div>
             </div>
 
-            <div class="shipping-layout">
-                <div class="shipping-form-card">
-                    <h3 style="font-size:1.2rem; margin-bottom:1.2rem; display:flex; align-items:center; gap:8px;">
-                        <i class="fas fa-file-invoice" style="color:var(--accent)"></i> <span id="form-heading">بيانات استلام الملازم والكتب</span>
-                    </h3>
+            <form onsubmit="handleDirectCheckout(event)">
+                <div class="checkout-main-layout">
+                    <div class="checkout-card">
+                        <div class="checkout-section-title">
+                            <i class="fas fa-shield-alt"></i>
+                            <span id="chkSec1">1. Customer Information</span>
+                            <span class="ar-sub">معلومات العميل</span>
+                        </div>
+                        
+                        <div class="input-icon-group">
+                            <i class="fas fa-user input-icon"></i>
+                            <input type="text" id="shipName" required placeholder="Full Name | الاسم الكامل">
+                        </div>
+                        <div class="input-icon-group">
+                            <i class="fas fa-phone input-icon"></i>
+                            <input type="tel" id="shipPhone" required placeholder="Phone Number | رقم الهاتف">
+                        </div>
+                        <div class="input-icon-group">
+                            <i class="fas fa-envelope input-icon"></i>
+                            <input type="email" id="shipEmail" placeholder="Email Address | البريد الإلكتروني">
+                        </div>
 
-                    <form onsubmit="handleDirectCheckout(event)">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label id="lbl-name">الاسم بالكامل *</label>
-                                <input type="text" id="shipName" required placeholder="أحمد محمد">
+                        <div style="height: 1rem;"></div>
+
+                        <div class="checkout-section-title">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span id="chkSec2">2. Shipping Address</span>
+                            <span class="ar-sub">العنوان</span>
+                        </div>
+
+                        <div class="input-icon-group">
+                            <i class="fas fa-city input-icon"></i>
+                            <select id="shipGov" onchange="calculateShippingCost()" required>
+                                <option value="" disabled selected id="optCityDefault">City | المدينة</option>
+                                <option value="Cairo">القاهرة والجيزة - Cairo & Giza (35 EGP)</option>
+                                <option value="Alexandria">الإسكندرية - Alexandria (45 EGP)</option>
+                                <option value="Delta">الدلتا - Delta (50 EGP)</option>
+                                <option value="Upper">الصعيد والقناة - Upper Egypt (65 EGP)</option>
+                            </select>
+                        </div>
+                        <div class="input-icon-group">
+                            <i class="fas fa-home input-icon"></i>
+                            <input type="text" id="shipAddress" required placeholder="Address | العنوان بالتفصيل">
+                        </div>
+
+                        <div style="height: 1rem;"></div>
+
+                        <div class="checkout-section-title">
+                            <i class="fas fa-check-square"></i>
+                            <span id="chkSec3">3. Payment Method</span>
+                            <span class="ar-sub">طريقة الدفع</span>
+                        </div>
+
+                        <div class="payment-options-list">
+                            <div class="payment-radio-card active" onclick="selectPaymentMethod('visa', this)">
+                                <div class="payment-radio-left">
+                                    <div class="custom-radio"></div>
+                                    <div>
+                                        <div class="payment-title-main">Visa / Credit Card</div>
+                                        <div class="payment-subtitle-sub" id="chkSubVisa">بطاقة ائتمانية / فيزا</div>
+                                    </div>
+                                </div>
+                                <div class="payment-badge-logo"><i class="fas fa-credit-card"></i> Visa</div>
                             </div>
-                            <div class="form-group">
-                                <label id="lbl-phone">رقم الهاتف / الواتساب *</label>
-                                <input type="tel" id="shipPhone" required placeholder="010xxxxxxxx">
+
+                            <div class="payment-radio-card" onclick="selectPaymentMethod('wallet', this)">
+                                <div class="payment-radio-left">
+                                    <div class="custom-radio"></div>
+                                    <div>
+                                        <div class="payment-title-main">Mobile Wallet</div>
+                                        <div class="payment-subtitle-sub" id="chkSubWallet">محفظة إلكترونية</div>
+                                    </div>
+                                </div>
+                                <div class="payment-badge-logo" style="color:#e60000;"><i class="fas fa-wallet"></i> Wallet</div>
                             </div>
                         </div>
 
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label id="lbl-gov">المحافظة *</label>
-                                <select id="shipGov" onchange="calculateShippingCost()" required>
-                                    <option value="" disabled selected id="opt-select-gov">اختر المحافظة للتوصيل</option>
-                                    <option value="cairo" id="opt-cairo">القاهرة والجيزة (35 ج.م)</option>
-                                    <option value="alex" id="opt-alex">الإسكندرية والبحيرة (45 ج.م)</option>
-                                    <option value="delta" id="opt-delta">الدلتا والوجه البحري (50 ج.م)</option>
-                                    <option value="upper" id="opt-upper">الصعيد والقناة (65 ج.م)</option>
-                                </select>
+                        <div id="visaFieldsSection" style="margin-top: 1.2rem; background: var(--bg-body); padding: 1.2rem; border-radius: 12px; border: 1px solid var(--glass-border);">
+                            <h4 id="chkVisaTitle" style="font-size: 0.95rem; margin-bottom: 1rem; color: var(--accent); display:flex; align-items:center; gap:8px;">
+                                <i class="fas fa-credit-card"></i> إدخال بيانات الكارت
+                            </h4>
+                            <div class="input-icon-group">
+                                <i class="fas fa-user input-icon"></i>
+                                <input type="text" placeholder="الاسم على الكارت">
                             </div>
-                            <div class="form-group">
-                                <label id="lbl-address">العنوان التفصيلي *</label>
-                                <input type="text" id="shipAddress" required placeholder="اسم الشارع - الشقة - المعلم الشهير">
+                            <div class="input-icon-group">
+                                <i class="fas fa-credit-card input-icon"></i>
+                                <input type="text" maxlength="19" placeholder="رقم الكارت (16 رقم)">
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label id="lbl-payment">طريقة الدفع</label>
-                            <div class="payment-methods">
-                                <div class="payment-option active" onclick="selectPayment('vodafone', this)" id="pay-voda">
-                                    <i class="fas fa-mobile-alt"></i> <span id="pay-voda-txt">فودافون كاش</span>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                                <div class="input-icon-group">
+                                    <i class="fas fa-calendar-alt input-icon"></i>
+                                    <input type="text" maxlength="5" placeholder="MM/YY">
                                 </div>
-                                <div class="payment-option" onclick="selectPayment('instapay', this)" id="pay-insta">
-                                    <i class="fas fa-university"></i> <span id="pay-insta-txt">انستا باي InstaPay</span>
-                                </div>
-                                <div class="payment-option" onclick="selectPayment('cod', this)" id="pay-cod">
-                                    <i class="fas fa-hand-holding-usd"></i> <span id="pay-cod-txt">الدفع عند الاستلام</span>
+                                <div class="input-icon-group">
+                                    <i class="fas fa-lock input-icon"></i>
+                                    <input type="password" maxlength="4" placeholder="CVV">
                                 </div>
                             </div>
                         </div>
 
-                        <button type="submit" class="btn-submit-shipping" style="width: 100%; margin-top: 1rem;">
-                            <i class="fas fa-check-circle"></i> <span id="btn-submit-order">تأكيد طلب الكتب الآن</span>
+                        <div id="walletFieldsSection" style="display: none; margin-top: 1.2rem; background: var(--bg-body); padding: 1.2rem; border-radius: 12px; border: 1px solid var(--glass-border);">
+                            <h4 id="chkWalletTitle" style="font-size: 0.95rem; margin-bottom: 1rem; color: #2563eb; display:flex; align-items:center; gap:8px;">
+                                <i class="fas fa-mobile-alt"></i> إدخال بيانات المحفظة
+                            </h4>
+                            <div class="input-icon-group">
+                                <i class="fas fa-phone input-icon"></i>
+                                <input type="tel" placeholder="رقم المحفظة">
+                            </div>
+                            <div class="input-icon-group">
+                                <i class="fas fa-key input-icon"></i>
+                                <input type="password" placeholder="كلمة مرور المحفظة / PIN">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-pay-blue" style="margin-top: 1.5rem;">
+                            <i class="fas fa-lock"></i> <span id="btnPayText">Pay 0 EGP</span>
                         </button>
-                    </form>
-                </div>
+                    </div>
 
-                <div class="shipping-sidebar">
-                    <div class="sidebar-card">
-                        <h3 style="font-size: 1.1rem; margin-bottom: 1rem;" id="summary-title">ملخص الطلب</h3>
-                        <div class="calc-box">
-                            <span id="lbl-subtotal">إجمالي الكتب:</span>
-                            <span id="subtotalPrice">0 ج.م</span>
-                        </div>
-                        <div class="calc-box">
-                            <span id="lbl-shipping">مصاريف الشحن:</span>
-                            <span id="shippingCost">0 ج.م</span>
-                        </div>
-                        <div class="calc-box" style="border-bottom: none; font-weight: 800; font-size: 1.1rem; margin-top: 0.5rem; color: var(--accent);">
-                            <span id="lbl-total">الإجمالي النهائي:</span>
-                            <span id="finalTotalPrice">0 ج.م</span>
+                    <div>
+                        <div class="checkout-card">
+                            <div class="checkout-section-title">
+                                <span id="sumTitle">Order Summary</span>
+                                <span class="ar-sub">ملخص الطلب</span>
+                            </div>
+                            <div id="checkoutSummaryItems"></div>
+                            <div class="summary-calc-row">
+                                <span id="lblSubtotal">Subtotal</span>
+                                <span id="summarySubtotalPrice">0 EGP</span>
+                            </div>
+                            <div class="summary-calc-row">
+                                <span id="lblShipping">Shipping</span>
+                                <span id="summaryShippingPrice">0 EGP</span>
+                            </div>
+                            <div class="summary-calc-row total-row">
+                                <span id="lblTotal">Total</span>
+                                <span id="summaryTotalPrice">0 EGP</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </section>
     </main>
 
-    <!-- ================= 6. ADMIN DASHBOARD PAGE ================= -->
+    <main class="page" id="myOrdersPage">
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title" id="ordersTitle">قائمة طلباتي 📦</h2>
+                <p class="section-subtitle" id="ordersSub">تتبع طلباتك السابقة والشحنات الحالية بسهولة</p>
+            </div>
+            <div class="orders-grid" id="ordersListContainer"></div>
+        </section>
+    </main>
+
     <main class="page" id="adminPage">
         <div class="admin-container">
             <div class="section-header" style="margin-bottom: 1.5rem;">
-                <h2 class="section-title">لوحة تحكم الأدمن</h2>
-                <p class="section-subtitle">إدارة المنتجات، أكواد المدرسين، ومستخدمي النظام بالكامل</p>
+                <h2 class="section-title" id="adminTitle">لوحة تحكم الأدمن</h2>
+                <p class="section-subtitle" id="adminSub">إدارة المنتجات، أكواد المدرسين، ومستخدمي النظام بالكامل</p>
             </div>
 
             <div class="admin-stats-grid">
@@ -919,42 +598,43 @@
                     <div class="admin-stat-icon"><i class="fas fa-users"></i></div>
                     <div>
                         <div style="font-size: 1.5rem; font-weight: 800;" id="statTotalUsers">4</div>
-                        <div style="font-size: 0.8rem; color: var(--text-muted);">إجمالي المستخدمين</div>
+                        <div style="font-size: 0.8rem; color: var(--text-muted);" id="adminStat1">إجمالي المستخدمين</div>
                     </div>
                 </div>
                 <div class="admin-stat-card">
                     <div class="admin-stat-icon"><i class="fas fa-book"></i></div>
                     <div>
                         <div style="font-size: 1.5rem; font-weight: 800;" id="statTotalBooks">3</div>
-                        <div style="font-size: 0.8rem; color: var(--text-muted);">إجمالي الكتب</div>
+                        <div style="font-size: 0.8rem; color: var(--text-muted);" id="adminStat2">إجمالي الكتب</div>
                     </div>
                 </div>
                 <div class="admin-stat-card">
                     <div class="admin-stat-icon"><i class="fas fa-key"></i></div>
                     <div>
                         <div style="font-size: 1.5rem; font-weight: 800;" id="statTotalCodes">3</div>
-                        <div style="font-size: 0.8rem; color: var(--text-muted);">الأكواد المتاحة</div>
+                        <div style="font-size: 0.8rem; color: var(--text-muted);" id="adminStat3">الأكواد المتاحة</div>
                     </div>
                 </div>
             </div>
 
             <div class="admin-tabs">
-                <button class="admin-tab-btn active" onclick="switchAdminTab('usersTab', this)"><i class="fas fa-users-cog"></i> إدارة المستخدمين</button>
-                <button class="admin-tab-btn" onclick="switchAdminTab('productsTab', this)"><i class="fas fa-book-medical"></i> إدارة الكتب والملخصات</button>
-                <button class="admin-tab-btn" onclick="switchAdminTab('codesTab', this)"><i class="fas fa-key"></i> إدارة أكواد المدرسين</button>
+                <button class="admin-tab-btn active" onclick="switchAdminTab('usersTab', this)" id="admTab1"><i class="fas fa-users-cog"></i> إدارة المستخدمين</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('productsTab', this)" id="admTab2"><i class="fas fa-book-medical"></i> إدارة الكتب والملخصات</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('codesTab', this)" id="admTab3"><i class="fas fa-key"></i> إدارة أكواد المدرسين</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('notifTab', this)" id="admTab4"><i class="fas fa-bell"></i> إدارة الإشعارات 🔔</button>
             </div>
 
             <div class="admin-panel-content active" id="usersTab">
                 <div class="admin-card-box">
-                    <h3 style="font-size: 1.1rem; margin-bottom: 1rem;"><i class="fas fa-shield-alt" style="color: var(--accent);"></i> قائمة مستخدمي المنصة والصلاحيات</h3>
+                    <h3 id="admUsersTitle" style="font-size: 1.1rem; margin-bottom: 1rem;"><i class="fas fa-shield-alt" style="color: var(--accent);"></i> قائمة مستخدمي المنصة والصلاحيات</h3>
                     <div style="overflow-x: auto;">
                         <table class="admin-table">
                             <thead>
                                 <tr>
-                                    <th>اسم المستخدم</th>
-                                    <th>البريد الإلكتروني</th>
-                                    <th>الصلاحية الحالية</th>
-                                    <th>إجراء التبديل / التحكم</th>
+                                    <th id="thUser1">اسم المستخدم</th>
+                                    <th id="thUser2">البريد الإلكتروني</th>
+                                    <th id="thUser3">الصلاحية الحالية</th>
+                                    <th id="thUser4">إجراء التبديل / التحكم</th>
                                 </tr>
                             </thead>
                             <tbody id="usersTableBody"></tbody>
@@ -965,49 +645,61 @@
 
             <div class="admin-panel-content" id="productsTab">
                 <div class="admin-card-box">
-                    <h3 style="font-size: 1.1rem; margin-bottom: 1rem;"><i class="fas fa-plus-circle" style="color: var(--accent);"></i> إضافة كتاب أو ملزمة جديدة للمكتبة</h3>
+                    <h3 id="admBookAddTitle" style="font-size: 1.1rem; margin-bottom: 1rem;"><i class="fas fa-plus-circle" style="color: var(--accent);"></i> إضافة كتاب أو ملزمة جديدة للمكتبة</h3>
                     <form onsubmit="handleAddBook(event)">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>عنوان الكتاب / الملزمة *</label>
-                                <input type="text" id="newBookTitle" required placeholder="مثلاً: كتاب الإبداع في اللغة العربية">
+                        <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                            <div class="input-icon-group">
+                                <input type="text" id="newBookTitle" required placeholder="عنوان الكتاب / الملزمة *">
                             </div>
-                            <div class="form-group">
-                                <label>السعر (ج.م) *</label>
-                                <input type="number" id="newBookPrice" required placeholder="130">
+                            <div class="input-icon-group">
+                                <input type="number" id="newBookPrice" required placeholder="السعر (ج.م) *">
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>المادة *</label>
+                        <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                            <div class="input-icon-group">
                                 <select id="newBookCategory" required>
-                                    <option value="physics">الفيزياء</option>
-                                    <option value="math">الرياضيات</option>
-                                    <option value="chemistry">الكيمياء</option>
+                                    <option value="physics" id="optCatPhys">الفيزياء</option>
+                                    <option value="math" id="optCatMath">الرياضيات</option>
+                                    <option value="chemistry" id="optCatChem">الكيمياء</option>
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <label>اختر صورة الغلاف من الجهاز (Browse) *</label>
-                                <input type="file" id="newBookImgFile" accept="image/*" required>
+                            <div class="input-icon-group">
+                                <select id="newBookTeacher" required style="width:100%; padding:0.85rem; border-radius:10px; background:var(--bg-body); border:1px solid var(--glass-border); color:var(--text-main);">
+                                    <option value="mohamed_abdelmaboud">مستر محمد عبد المعبود</option>
+                                    <option value="bassem_elnahas">دكتور باسم النحاس</option>
+                                    <option value="ahmed_essam">مستر أحمد عصام</option>
+                                    <option value="wessam_shata">دكتور وسام شطا</option>
+                                </select>
                             </div>
                         </div>
-                        <button type="submit" class="btn-submit-shipping" style="margin-top: 1rem;">
+
+                        <div class="input-icon-group" style="background: var(--bg-body); padding: 1rem; border-radius: 10px; border: 1px dashed var(--glass-border);">
+                            <label id="lblBookImg" style="display: block; font-size: 0.88rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--accent);">
+                                <i class="fas fa-image"></i> اختر صورة الكتاب من جهازك:
+                            </label>
+                            <input type="file" id="newBookImageFile" accept="image/*" required style="background: transparent; border: none; padding: 0;" onchange="previewBookImage(event)">
+                            <div id="bookImagePreviewContainer" style="margin-top: 10px; display: none;">
+                                <img id="bookImgPreviewTag" src="" alt="Preview" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px; border: 1px solid var(--glass-border);">
+                            </div>
+                        </div>
+
+                        <button type="submit" id="btnAddBookSubmit" class="btn-pay-blue" style="margin-top: 1rem; width: auto; padding: 0.75rem 1.5rem;">
                             <i class="fas fa-plus"></i> إضافة الكتاب للمتجر
                         </button>
                     </form>
                 </div>
 
                 <div class="admin-card-box">
-                    <h3 style="font-size: 1.1rem; margin-bottom: 1rem;"><i class="fas fa-list" style="color: var(--accent);"></i> قائمة الكتب الحالية وإدارتها</h3>
+                    <h3 id="admBooksListTitle" style="font-size: 1.1rem; margin-bottom: 1rem;"><i class="fas fa-list" style="color: var(--accent);"></i> قائمة الكتب الحالية وإدارتها</h3>
                     <div style="overflow-x: auto;">
                         <table class="admin-table">
                             <thead>
                                 <tr>
-                                    <th>الصورة</th>
-                                    <th>عنوان الكتاب</th>
-                                    <th>المادة</th>
-                                    <th>السعر</th>
-                                    <th>الإجراءات</th>
+                                    <th id="thBook1">الصورة</th>
+                                    <th id="thBook2">عنوان الكتاب</th>
+                                    <th id="thBook3">المادة</th>
+                                    <th id="thBook4">السعر</th>
+                                    <th id="thBook5">الإجراءات</th>
                                 </tr>
                             </thead>
                             <tbody id="adminBooksTableBody"></tbody>
@@ -1018,49 +710,61 @@
 
             <div class="admin-panel-content" id="codesTab">
                 <div class="admin-card-box">
-                    <h3 style="font-size: 1.1rem; margin-bottom: 1rem;"><i class="fas fa-bolt" style="color: var(--accent);"></i> إضافة كود مدرس جديد</h3>
+                    <h3 id="admCodeAddTitle" style="font-size: 1.1rem; margin-bottom: 1rem;"><i class="fas fa-bolt" style="color: var(--accent);"></i> إضافة كود مدرس جديد</h3>
                     <form onsubmit="handleAddCode(event)">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>عنوان الكود / المحاضرة *</label>
-                                <input type="text" id="newCodeTitle" required placeholder="مثلاً: كود الفيزياء الحديثة - مستر محمد">
+                        <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                            <div class="input-icon-group">
+                                <input type="text" id="newCodeTitle" required placeholder="عنوان الكود / المحاضرة *">
                             </div>
-                            <div class="form-group">
-                                <label>السعر (ج.م) *</label>
-                                <input type="number" id="newCodePrice" required placeholder="80">
+                            <div class="input-icon-group">
+                                <input type="number" id="newCodePrice" required placeholder="السعر (ج.م) *">
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>المادة *</label>
+                        <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                            <div class="input-icon-group">
                                 <select id="newCodeCategory" required>
-                                    <option value="physics">فيزياء</option>
-                                    <option value="math">رياضيات</option>
-                                    <option value="chemistry">كيمياء</option>
+                                    <option value="physics" id="optCodeCatPhys">فيزياء</option>
+                                    <option value="math" id="optCodeCatMath">رياضيات</option>
+                                    <option value="chemistry" id="optCodeCatChem">كيمياء</option>
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <label>تصنيف كود (Tag) *</label>
-                                <input type="text" id="newCodeTag" required placeholder="مثلاً: تفعيل فورى / كود حصري">
+                            <div class="input-icon-group">
+                                <select id="newCodeTeacher" required style="width:100%; padding:0.85rem; border-radius:10px; background:var(--bg-body); border:1px solid var(--glass-border); color:var(--text-main);">
+                                    <option value="mohamed_abdelmaboud">مستر محمد عبد المعبود</option>
+                                    <option value="bassem_elnahas">دكتور باسم النحاس</option>
+                                    <option value="ahmed_essam">مستر أحمد عصام</option>
+                                    <option value="wessam_shata">دكتور وسام شطا</option>
+                                </select>
                             </div>
                         </div>
-                        <button type="submit" class="btn-submit-shipping" style="margin-top: 1rem;">
+
+                        <div class="input-icon-group" style="background: var(--bg-body); padding: 1rem; border-radius: 10px; border: 1px dashed var(--glass-border);">
+                            <label id="lblCodeImg" style="display: block; font-size: 0.88rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--accent);">
+                                <i class="fas fa-image"></i> اختر صورة الغلاف للكود/المحاضرة من جهازك:
+                            </label>
+                            <input type="file" id="newCodeImageFile" accept="image/*" required style="background: transparent; border: none; padding: 0;" onchange="previewCodeImage(event)">
+                            <div id="codeImagePreviewContainer" style="margin-top: 10px; display: none;">
+                                <img id="codeImgPreviewTag" src="" alt="Preview" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px; border: 1px solid var(--glass-border);">
+                            </div>
+                        </div>
+
+                        <button type="submit" id="btnAddCodeSubmit" class="btn-pay-blue" style="margin-top: 1rem; width: auto; padding: 0.75rem 1.5rem;">
                             <i class="fas fa-plus"></i> إضافة الكود للمتجر
                         </button>
                     </form>
                 </div>
 
                 <div class="admin-card-box">
-                    <h3 style="font-size: 1.1rem; margin-bottom: 1rem;"><i class="fas fa-list" style="color: var(--accent);"></i> قائمة أكواد المدرسين الحالية وإدارتها</h3>
+                    <h3 id="admCodesListTitle" style="font-size: 1.1rem; margin-bottom: 1rem;"><i class="fas fa-list" style="color: var(--accent);"></i> قائمة أكواد المدرسين الحالية وإدارتها</h3>
                     <div style="overflow-x: auto;">
                         <table class="admin-table">
                             <thead>
                                 <tr>
-                                    <th>عنوان الكود</th>
-                                    <th>التصنيف (Tag)</th>
-                                    <th>المادة</th>
-                                    <th>السعر</th>
-                                    <th>الإجراءات</th>
+                                    <th id="thCode1">الصورة</th>
+                                    <th id="thCode2">عنوان الكود</th>
+                                    <th id="thCode3">المادة</th>
+                                    <th id="thCode4">السعر</th>
+                                    <th id="thCode5">الإجراءات</th>
                                 </tr>
                             </thead>
                             <tbody id="adminCodesTableBody"></tbody>
@@ -1069,714 +773,205 @@
                 </div>
             </div>
 
-        </div>
-    </main>
-
-    <!-- ================= 7. CONTACT PAGE ================= -->
-    <main class="page" id="contactPage">
-        <div class="contact-page-container">
-            <div class="section-header" style="margin-bottom: 1.5rem;">
-                <h2 class="section-title" id="cnt-main-title">اتصل بنا</h2>
-                <p class="section-subtitle" id="cnt-main-subtitle">نحن هنا دائماً للإجابة على استفساراتك وخدمتك بأفضل شكل ممكن</p>
-            </div>
-
-            <div class="contact-new-wrapper">
-                <div class="contact-card-box contact-form-card">
-                    <p class="contact-subtitle-text" id="cnt-subtitle">
-                        يمكنك إرسال استفساراتك عن الطلبات أو المنتجات عبر ملء النموذج أدناه وسيقوم فريق الدعم بالرد عليك في أقرب وقت.
-                    </p>
-                    <form onsubmit="handleContactSubmit(event)">
-                        <div class="form-group">
-                            <label id="cnt-lbl-name">الاسم بالكامل</label>
-                            <input type="text" id="cntInputName" placeholder="أدخل اسمك" required>
+            
+            <div class="admin-panel-content" id="notifTab">
+                <div class="admin-card-box">
+                    <h3 style="font-size: 1.1rem; margin-bottom: 1rem;"><i class="fas fa-bullhorn" style="color: var(--accent);"></i> نشر إشعار أو تنبيه جديد للطلاب</h3>
+                    <form onsubmit="handleAdminSendNotification(event)">
+                        <div class="input-icon-group">
+                            <textarea id="adminNotifText" rows="4" required placeholder="اكتب نص التنبيه أو الإشعار المهم هنا ليظهر لجميع الطلاب في القائمة والبار العلوي..." style="resize: vertical;"></textarea>
                         </div>
-                        <div class="form-group">
-                            <label id="cnt-lbl-email">البريد الإلكتروني</label>
-                            <input type="email" id="cntInputEmail" placeholder="أدخل بريدك الإلكتروني" required>
-                        </div>
-                        <div class="form-group">
-                            <label id="cnt-lbl-phone">رقم الهاتف / الواتساب</label>
-                            <div class="phone-input-group">
-                                <div class="country-flag-box">
-                                    <img src="https://flagcdn.com/w40/eg.png" alt="Egypt" width="22">
-                                    <i class="fas fa-chevron-down" style="font-size: 0.7rem; color: #888;"></i>
-                                </div>
-                                <span class="country-code-text">+20</span>
-                                <input type="tel" id="cntInputPhone" placeholder="1xxxxxxxxx" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label id="cnt-lbl-subject">موضوع الاستفسار</label>
-                            <input type="text" id="cntInputSubject" placeholder="أدخل موضوع الرسالة">
-                        </div>
-                        <div class="form-group">
-                            <label id="cnt-lbl-message">تفاصيل الرسالة</label>
-                            <textarea rows="4" id="cntInputMessage" placeholder="اكتب استفسارك هنا..."></textarea>
-                        </div>
-                        <button type="submit" class="btn-send-orange" id="cnt-btn-send">إرسال الرسالة</button>
+                        <button type="submit" class="btn-pay-blue" style="width: auto; padding: 0.75rem 1.5rem;">
+                            <i class="fas fa-paper-plane"></i> نشر الإشعار فوراً
+                        </button>
                     </form>
                 </div>
-
-                <div class="contact-card-box contact-info-sidebar">
-                    <div class="info-item-row">
-                        <div class="info-circle-icon"><i class="far fa-envelope"></i></div>
-                        <div class="info-details-col">
-                            <span class="info-label-sm">البريد الإلكتروني</span>
-                            <a href="mailto:support@ilearnstore.com" class="info-val-orange">support@ilearnstore.com</a>
-                        </div>
-                    </div>
-                    <div class="info-item-row">
-                        <div class="info-circle-icon"><i class="fas fa-phone-alt"></i></div>
-                        <div class="info-details-col">
-                            <span class="info-label-sm">خدمة العملاء / واتساب</span>
-                            <a href="https://wa.me/201000000000" target="_blank" class="info-val-orange">+20 100 000 0000</a>
-                        </div>
-                    </div>
-                    <div class="info-item-row">
-                        <div class="info-circle-icon"><i class="fas fa-map-marker-alt"></i></div>
-                        <div class="info-details-col">
-                            <span class="info-label-sm">العنوان المقر الرئيسي</span>
-                            <span class="info-val-orange">القاهرة، مصر</span>
-                        </div>
-                    </div>
-                    <hr class="info-divider">
-                    <div class="social-follow-box">
-                        <p>يمكنك أيضاً متابعتنا والتواصل معنا عبر:</p>
-                        <div class="social-circle-links">
-                            <a href="#" class="social-round-btn" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="social-round-btn" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                            <a href="#" class="social-round-btn" title="Instagram"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                </div>
             </div>
+
         </div>
     </main>
 
-    <!-- Cart Overlay & Drawer -->
+    
+    <main class="page" id="contactPage">
+        <section class="section" style="max-width: 1100px; margin: 0 auto;">
+            <div class="section-header" style="margin-bottom: 3rem;">
+                <h2 class="section-title">اتصل بنا</h2>
+                <p class="section-subtitle">نحن هنا دائماً للإجابة على استفساراتك وخدمتك بأفضل شكل ممكن</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 350px 1fr; gap: 2rem; align-items: start;" class="contact-grid-layout">
+                
+                <div class="checkout-card" style="padding: 2rem 1.5rem;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.8rem; padding-bottom: 1rem; border-bottom: 1px solid var(--glass-border);">
+                        <div style="text-align: right;">
+                            <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">البريد الإلكتروني</div>
+                            <div style="font-size: 0.95rem; font-weight: 700; color: var(--accent); margin-top: 2px;">support@ilearnstore.com</div>
+                        </div>
+                        <div style="width: 42px; height: 42px; border-radius: 50%; background: rgba(255, 107, 53, 0.15); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1.1rem;">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.8rem; padding-bottom: 1rem; border-bottom: 1px solid var(--glass-border);">
+                        <div style="text-align: right;">
+                            <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">خدمة العملاء / واتساب</div>
+                            <div style="font-size: 0.95rem; font-weight: 700; color: var(--accent); margin-top: 2px;" dir="ltr">0000 000 100 20+</div>
+                        </div>
+                        <div style="width: 42px; height: 42px; border-radius: 50%; background: rgba(255, 107, 53, 0.15); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1.1rem;">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem;">
+                        <div style="text-align: right;">
+                            <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">العنوان المقر الرئيسي</div>
+                            <div style="font-size: 0.95rem; font-weight: 700; color: var(--accent); margin-top: 2px;">القاهرة، مصر</div>
+                        </div>
+                        <div style="width: 42px; height: 42px; border-radius: 50%; background: rgba(255, 107, 53, 0.15); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1.1rem;">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                    </div>
+
+                    <div style="border-top: 1px solid var(--glass-border); padding-top: 1.5rem; text-align: center;">
+                        <div style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 1rem;">يمكنك أيضاً متابعتنا والتواصل معنا عبر:</div>
+                        <div style="display: flex; justify-content: center; gap: 10px;">
+                            <a href="#" class="footer-social-btn"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="footer-social-btn"><i class="fab fa-whatsapp"></i></a>
+                            <a href="#" class="footer-social-btn"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="checkout-card" style="padding: 2.5rem;">
+                    <p style="font-size: 0.9rem; color: var(--text-sub); line-height: 1.7; margin-bottom: 1.8rem; text-align: right;">
+                        يمكنك إرسال استفساراتك عن الطلبات أو المنتجات عبر ملء النموذج أدناه وسيقوم فريق الدعم بالرد عليك في أقرب وقت.
+                    </p>
+
+                    <form onsubmit="handleContactFormSubmit(event)">
+                        <div style="margin-bottom: 1.2rem; text-align: right;">
+                            <label style="display: block; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.5rem;">الاسم بالكامل</label>
+                            <input type="text" required placeholder="أدخل اسمك" style="width: 100%; padding: 0.85rem 1rem; border-radius: 10px; border: 1px solid var(--glass-border); background: var(--bg-body); color: var(--text-main); font-family: inherit; font-size: 0.9rem;">
+                        </div>
+
+                        <div style="margin-bottom: 1.2rem; text-align: right;">
+                            <label style="display: block; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.5rem;">البريد الإلكتروني</label>
+                            <input type="email" required placeholder="أدخل بريدك الإلكتروني" style="width: 100%; padding: 0.85rem 1rem; border-radius: 10px; border: 1px solid var(--glass-border); background: var(--bg-body); color: var(--text-main); font-family: inherit; font-size: 0.9rem;">
+                        </div>
+
+                        <div style="margin-bottom: 1.2rem; text-align: right;">
+                            <label style="display: block; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.5rem;">رقم الهاتف / الواتساب</label>
+                            <div style="display: flex; gap: 8px;">
+                                <input type="tel" required placeholder="1xxxxxxxx" style="flex-grow: 1; padding: 0.85rem 1rem; border-radius: 10px; border: 1px solid var(--glass-border); background: var(--bg-body); color: var(--text-main); font-family: inherit; font-size: 0.9rem;" dir="ltr">
+                                <div style="display: flex; align-items: center; gap: 5px; padding: 0 12px; background: var(--bg-body); border: 1px solid var(--glass-border); border-radius: 10px; font-weight: 700; font-size: 0.9rem;">
+                                    <span>20+</span>
+                                    <span>🇪🇬</span>
+                                    <i class="fas fa-chevron-down" style="font-size: 0.75rem; color: var(--text-muted);"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="margin-bottom: 1.2rem; text-align: right;">
+                            <label style="display: block; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.5rem;">موضوع الاستفسار</label>
+                            <input type="text" required placeholder="أدخل موضوع الرسالة" style="width: 100%; padding: 0.85rem 1rem; border-radius: 10px; border: 1px solid var(--glass-border); background: var(--bg-body); color: var(--text-main); font-family: inherit; font-size: 0.9rem;">
+                        </div>
+
+                        <div style="margin-bottom: 1.8rem; text-align: right;">
+                            <label style="display: block; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.5rem;">تفاصيل الرسالة</label>
+                            <textarea rows="4" required placeholder="اكتب استفسارك هنا..." style="width: 100%; padding: 0.85rem 1rem; border-radius: 10px; border: 1px solid var(--glass-border); background: var(--bg-body); color: var(--text-main); font-family: inherit; font-size: 0.9rem; resize: vertical;"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-submit-shipping" style="width: 100%; padding: 1rem; font-size: 1.05rem;">
+                            إرسال الرسالة
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    
     <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()">
         <div class="cart-drawer" onclick="event.stopPropagation()">
             <div>
                 <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--glass-border); padding-bottom: 1rem;">
-                    <h3 id="cart-drawer-title">سلة المشتريات</h3>
+                    <h3 id="cartDrawerTitle">سلة المشتريات</h3>
                     <button onclick="toggleCart()" class="btn-icon" style="width: 32px; height: 32px;"><i class="fas fa-times"></i></button>
                 </div>
                 <div class="cart-items-list" id="cartItemsList">
-                    <p style="text-align: center; color: var(--text-muted); margin-top: 2rem;" id="cart-empty-text">السلة فارغة حالياً</p>
+                    <p id="cartEmptyText" style="text-align: center; color: var(--text-muted); margin-top: 2rem;">السلة فارغة حالياً</p>
                 </div>
             </div>
             <div>
                 <div style="border-top: 1px solid var(--glass-border); padding-top: 1rem; margin-bottom: 1rem;">
                     <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 1.1rem;">
-                        <span id="drawer-total-lbl">إجمالي الكتب:</span>
+                        <span id="cartTotalLbl">الإجمالي:</span>
                         <span id="drawerTotalPrice" style="color: var(--accent);">0 ج.م</span>
                     </div>
                 </div>
-                <button onclick="checkAuthAndProceed('shippingPage')" class="btn-submit-shipping" style="width: 100%;" id="drawer-checkout-btn">إتمام شراء الكتب</button>
+                <button onclick="checkAuthAndProceed('shippingPage')" id="cartCheckoutBtn" class="btn-pay-blue" style="width: 100%;">إتمام شراء الكتب</button>
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
+    
     <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-brand">
-                <div class="logo-3d" onclick="switchPage('homePage')" style="margin-bottom: 0.5rem;">
-                    <div class="logo-icon">I</div>
-                    <div class="logo-text">LEARN <span>STORE</span></div>
+        <div class="footer-content-grid">
+            <div class="footer-col">
+                <div class="logo-3d" onclick="switchPage('homePage')" style="margin-bottom: 1rem;">
+                    <div class="logo-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="logo-text">KAAF <span>STORE</span></div>
                 </div>
-                <p id="footer-desc">المتجر الرائد لتوفر الكتب الخارجية وأكواد منصات الثانوية العامة في مصر فورياً وبأعلى جودة.</p>
-                <div class="social-links">
-                    <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-btn"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#" class="social-btn"><i class="fab fa-telegram-plane"></i></a>
+                <p id="footerDesc">المتجر الأول والرائد لتوفير الكتب الخارجية وملازم المدرسين وأكواد منصات الثانوية العامة في مصر فورياً وبأعلى جودة وسرعة تامة.</p>
+                <div class="footer-social-row">
+                    <a href="#" class="footer-social-btn" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="footer-social-btn" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="#" class="footer-social-btn" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
-            <div>
-                <h4 class="footer-title" id="footer-links-title">روابط سريعة</h4>
-                <ul class="footer-links">
-                    <li><a onclick="switchPage('homePage')" id="ft-home">الرئيسية</a></li>
-                    <li><a onclick="switchPage('booksPage')" id="ft-books">الكتب والملخصات</a></li>
-                    <li><a onclick="switchPage('teacherCodesPage')" id="ft-codes">أكواد المدرسين</a></li>
-                    <li><a onclick="switchPage('contactPage')" id="ft-contact">اتصل بنا</a></li>
+
+            <div class="footer-col">
+                <h4 id="fCol1Title">روابط سريعة</h4>
+                <ul class="footer-links-list">
+                    <li><a onclick="switchPage('homePage')" id="fLink1">الرئيسية</a></li>
+                    <li><a onclick="switchPage('booksPage')" id="fLink2">الكتب والملخصات</a></li>
+                    <li><a onclick="switchPage('teacherCodesPage')" id="fLink3">أكواد المدرسين</a></li>
                 </ul>
             </div>
-            <div>
-                <h4 class="footer-title" id="footer-support-title">الدعم والمساعدة</h4>
-                <ul class="footer-links">
-                    <li><a onclick="switchPage('shippingPage')" id="ft-shipping">سياسة الشحن</a></li>
-                    <li><a onclick="switchPage('contactPage')" id="ft-faq">الأسئلة الشائعة</a></li>
+
+            <div class="footer-col">
+                <h4 id="fCol2Title">الدعم والمساعدة</h4>
+                <ul class="footer-links-list">
+                    <li><a onclick="switchPage('myOrdersPage')" id="fLink4">طلباتي وشحناتي</a></li>
+                    <li><a onclick="switchPage('shippingPage')" id="fLink5">سياسة الشحن والتوصيل</a></li>
+                    <li><a onclick="switchPage('authPage')" id="fLink6">حسابي الشخصي</a></li>
+                    <li><a onclick="switchPage('contactPage')" id="fLink7">اتصل بنا</a></li>
                 </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 id="fCol3Title">تواصل معنا</h4>
+                <div class="footer-contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>+20 1143744763</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>support@kaafstore.com</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span id="fAddr">القاهرة، مصر - شحن لجميع المحافظات</span>
+                </div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p style="font-size: 0.85rem; color: var(--text-muted);" id="footer-rights">جميع الحقوق محفوظة © 2026 I-LEARN STORE</p>
+
+        <div class="footer-bottom-bar">
+            <p id="fCopy">جميع الحقوق محفوظة © 2026 KAAF STORE</p>
+            <p id="fSub" style="color: var(--text-sub); font-size: 0.8rem;">صُمم خصيصاً لطلاب الثانوية العامة في مصر ⚡</p>
         </div>
     </footer>
 
-    <!-- JavaScript Base Logic -->
-    <script>
-        let booksData = [
-            { id: 1, title: 'ملزمة الشرح الماسي في الفيزياء - ثالثة ثانوي', price: 120, category: 'physics', img: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&q=80' },
-            { id: 2, title: 'كتاب الامتحان في التفاضل والتكامل', price: 150, category: 'math', img: 'https://images.unsplash.com/photo-1509228468518-180dd4864904?w=400&q=80' },
-            { id: 3, title: 'مراجعة الماجستير في الكيمياء العضوية', price: 110, category: 'chemistry', img: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=400&q=80' }
-        ];
-
-        let codesData = [
-            { id: 101, title: 'كود محاضرة الفيزياء الحديثة - مستر محمد عبد المعبود', price: 80, category: 'physics', tag: 'كود حصري فورى' },
-            { id: 102, title: 'كود الشهر الكامل في التفاضل - أبطال الرياضيات', price: 200, category: 'math', tag: 'شامل الشهر' },
-            { id: 103, title: 'كود الباب الثاني كيمياء - الدكتور وسام شطا', price: 70, category: 'chemistry', tag: 'تفعيل فورى' }
-        ];
-
-        let usersData = [
-            { id: 1, name: 'محمود الأضخم (مدير المتجر)', email: 'admin@ilearn.com', role: 'admin' },
-            { id: 2, name: 'أحمد محمد (طالب)', email: 'ahmed@student.com', role: 'user' },
-            { id: 3, name: 'سارة خالد (طالبة)', email: 'sara@student.com', role: 'user' },
-            { id: 4, name: 'إبراهيم علي (مشرف مبيعات)', email: 'ibrahim@ilearn.com', role: 'admin' }
-        ];
-
-        let cart = [];
-        let currentLang = 'ar';
-        let currentShippingCost = 0;
-        let selectedCodeForCheckout = null;
-        let selectedCodePaymentMethod = 'vodafone';
-
-        let activeEditType = null;
-        let activeEditId = null;
-
-        let currentUser = null; 
-
-        function showToast(message) {
-            const container = document.getElementById('toastContainer');
-            const toast = document.createElement('div');
-            toast.className = 'toast';
-            toast.innerHTML = `<i class="fas fa-check-circle"></i> <span>${message}</span>`;
-            container.appendChild(toast);
-            setTimeout(() => {
-                toast.classList.add('hide');
-                setTimeout(() => toast.remove(), 400);
-            }, 3000);
-        }
-
-        // دالة مخصصة لإظهار رسالة السلة الفارغة بالتصميم الجديد المطلوب
-        function showEmptyCartMessage() {
-            const container = document.getElementById('toastContainer');
-            const toast = document.createElement('div');
-            toast.className = 'toast';
-            toast.innerHTML = `<i class="fas fa-exclamation-circle" style="color: var(--accent);"></i> <span>السلة فارغة! برجاء اضافة كتبك.</span>`;
-            container.appendChild(toast);
-            setTimeout(() => {
-                toast.classList.add('hide');
-                setTimeout(() => toast.remove(), 400);
-            }, 3000);
-        }
-
-        function switchPage(pageId) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
-            
-            document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active'));
-            const navLink = document.getElementById('nav-' + pageId);
-            if(navLink) navLink.classList.add('active');
-            
-            if(pageId === 'adminPage') {
-                renderAdminData();
-            }
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function checkAuthAndProceed(targetPageOrAction, paramId = null) {
-            if (!currentUser) {
-                showToast('عفواً، يجب تسجيل الدخول أولاً لتتمكن من الشراء!');
-                switchPage('authPage');
-                return;
-            }
-
-            if (targetPageOrAction === 'shippingPage') {
-                switchPage('shippingPage');
-            } else if (targetPageOrAction === 'codeCheckout') {
-                goToCodeCheckout(paramId);
-            }
-        }
-
-        function openAuthModal() {
-            if (currentUser) {
-                if (confirm(`أنت مسجل الدخول باسم: ${currentUser.name}\nهل تريد تسجيل الخروج؟`)) {
-                    currentUser = null;
-                    document.getElementById('authBtnIcon').style.color = 'var(--text-main)';
-                    showToast('تم تسجيل الخروج بنجاح');
-                }
-            } else {
-                switchPage('authPage');
-            }
-        }
-
-        function switchAuthTab(type) {
-            if (type === 'login') {
-                document.getElementById('tabLoginBtn').classList.add('active');
-                document.getElementById('tabSignupBtn').classList.remove('active');
-                document.getElementById('loginFormSection').style.display = 'block';
-                document.getElementById('signupFormSection').style.display = 'none';
-            } else {
-                document.getElementById('tabSignupBtn').classList.add('active');
-                document.getElementById('tabLoginBtn').classList.remove('active');
-                document.getElementById('signupFormSection').style.display = 'block';
-                document.getElementById('loginFormSection').style.display = 'none';
-            }
-        }
-
-        function handleLoginSubmit(e) {
-            e.preventDefault();
-            const email = document.getElementById('loginEmail').value.trim();
-            const pass = document.getElementById('loginPassword').value.trim();
-
-            let found = usersData.find(u => u.email === email);
-            if (found || email) {
-                currentUser = found ? found : { id: Date.now(), name: email.split('@')[0], email: email, role: 'user' };
-                document.getElementById('authBtnIcon').style.color = 'var(--accent)';
-                showToast(`أهلاً بك يا ${currentUser.name}! تم تسجيل الدخول بنجاح.`);
-                switchPage('homePage');
-            } else {
-                showToast('بيانات الدخول غير صحيحة');
-            }
-        }
-
-        function handleSignupSubmit(e) {
-            e.preventDefault();
-            const name = document.getElementById('signupName').value.trim();
-            const email = document.getElementById('signupEmail').value.trim();
-            const pass = document.getElementById('signupPassword').value.trim();
-
-            let newUser = { id: Date.now(), name, email, role: 'user' };
-            usersData.push(newUser);
-            currentUser = newUser;
-            
-            document.getElementById('authBtnIcon').style.color = 'var(--accent)';
-            showToast(`تم إنشاء الحساب وتسجيل الدخول بنجاح! مرحباً بك ${name}`);
-            switchPage('homePage');
-            renderAdminData();
-        }
-
-        function switchAdminTab(tabId, btn) {
-            document.querySelectorAll('.admin-panel-content').forEach(p => p.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-            document.querySelectorAll('.admin-tab-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-        }
-
-        function toggleTheme() {
-            const html = document.documentElement;
-            const icon = document.getElementById('themeIcon');
-            if(html.getAttribute('data-theme') === 'dark') {
-                html.setAttribute('data-theme', 'light');
-                icon.className = 'fas fa-moon';
-            } else {
-                html.setAttribute('data-theme', 'dark');
-                icon.className = 'fas fa-sun';
-            }
-        }
-
-        function toggleCart() {
-            document.getElementById('cartOverlay').classList.toggle('active');
-        }
-
-        function renderProducts() {
-            const bGrid = document.getElementById('allBooksGrid');
-            bGrid.innerHTML = booksData.map(b => `
-                <div class="book-card">
-                    <div>
-                        <div class="book-image-wrapper"><img src="${b.img || 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&q=80'}" alt="${b.title}"></div>
-                        <h3 class="book-title">${b.title}</h3>
-                    </div>
-                    <div class="book-footer">
-                        <span class="book-price">${b.price} ج.م</span>
-                        <button class="btn-add-cart" onclick="addBookToCart(${b.id})"><i class="fas fa-cart-plus"></i></button>
-                    </div>
-                </div>
-            `).join('');
-
-            const cGrid = document.getElementById('teacherCodesGrid');
-            cGrid.innerHTML = codesData.map(c => `
-                <div class="code-card">
-                    <div>
-                        <span class="code-tag">${c.tag}</span>
-                        <h3 class="book-title" style="margin-top:0.4rem;">${c.title}</h3>
-                    </div>
-                    <div class="book-footer">
-                        <span class="book-price">${c.price} ج.م</span>
-                        <button class="btn-submit-shipping" style="padding: 0.5rem 1rem; font-size: 0.85rem;" onclick="checkAuthAndProceed('codeCheckout', ${c.id})"><i class="fas fa-bolt"></i> شراء فوري</button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function goToCodeCheckout(codeId) {
-            selectedCodeForCheckout = codesData.find(c => c.id === codeId);
-            if(!selectedCodeForCheckout) return;
-
-            const box = document.getElementById('checkoutCodeDetails');
-            box.innerHTML = `
-                <div style="font-weight: 700; font-size: 1.05rem; margin-bottom: 0.4rem;">${selectedCodeForCheckout.title}</div>
-                <div style="color: var(--accent); font-weight: 800; font-size: 1.2rem;">السعر: ${selectedCodeForCheckout.price} ج.م</div>
-                <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.3rem;">التصنيف: ${selectedCodeForCheckout.tag} - تسليم إلكتروني فوري</div>
-            `;
-            switchPage('codeCheckoutPage');
-        }
-
-        function selectCodePayment(method, el) {
-            selectedCodePaymentMethod = method;
-            el.parentNode.querySelectorAll('.payment-option').forEach(o => o.classList.remove('active'));
-            el.classList.add('active');
-        }
-
-        function confirmInstantCodePurchase() {
-            if(!selectedCodeForCheckout) return;
-            const generatedCode = `I-LEARN-${Math.floor(100000 + Math.random() * 900000)}`;
-            document.getElementById('popupCodeText').innerText = generatedCode;
-            document.getElementById('codePopupOverlay').classList.add('active');
-        }
-
-        function closeCodePopup() {
-            document.getElementById('codePopupOverlay').classList.remove('active');
-            switchPage('homePage');
-        }
-
-        function copyGeneratedCode() {
-            const codeText = document.getElementById('popupCodeText').innerText;
-            navigator.clipboard.writeText(codeText).then(() => {
-                showToast('تم نسخ الكود إلى الحافظة بنجاح!');
-            });
-        }
-
-        function renderAdminData() {
-            document.getElementById('statTotalUsers').innerText = usersData.length;
-            document.getElementById('statTotalBooks').innerText = booksData.length;
-            document.getElementById('statTotalCodes').innerText = codesData.length;
-
-            const usersTbody = document.getElementById('usersTableBody');
-            usersTbody.innerHTML = usersData.map((u, index) => `
-                <tr>
-                    <td>${u.name}</td>
-                    <td>${u.email}</td>
-                    <td><span class="badge-role ${u.role}">${u.role === 'admin' ? 'مدير (Admin)' : 'مستخدم (User)'}</span></td>
-                    <td>
-                        <button class="btn-action-sm" onclick="toggleUserRole(${index})">
-                            <i class="fas fa-exchange-alt"></i> تبديل الصلاحية
-                        </button>
-                    </td>
-                </tr>
-            `).join('');
-
-            const booksTbody = document.getElementById('adminBooksTableBody');
-            booksTbody.innerHTML = booksData.map((b, index) => `
-                <tr>
-                    <td><img src="${b.img}" width="40" height="40" style="object-fit:cover; border-radius:6px;"></td>
-                    <td>${b.title}</td>
-                    <td>${b.category}</td>
-                    <td>${b.price} ج.م</td>
-                    <td>
-                        <button class="btn-action-sm" onclick="openEditBookModal(${b.id})"><i class="fas fa-edit"></i> تعديل</button>
-                        <button class="btn-action-sm btn-danger-sm" onclick="deleteBook(${b.id})"><i class="fas fa-trash"></i> حذف</button>
-                    </td>
-                </tr>
-            `).join('');
-
-            const codesTbody = document.getElementById('adminCodesTableBody');
-            codesTbody.innerHTML = codesData.map((c, index) => `
-                <tr>
-                    <td>${c.title}</td>
-                    <td>${c.tag}</td>
-                    <td>${c.category}</td>
-                    <td>${c.price} ج.م</td>
-                    <td>
-                        <button class="btn-action-sm" onclick="openEditCodeModal(${c.id})"><i class="fas fa-edit"></i> تعديل</button>
-                        <button class="btn-action-sm btn-danger-sm" onclick="deleteCode(${c.id})"><i class="fas fa-trash"></i> حذف</button>
-                    </td>
-                </tr>
-            `).join('');
-        }
-
-        function toggleUserRole(index) {
-            usersData[index].role = usersData[index].role === 'admin' ? 'user' : 'admin';
-            renderAdminData();
-            showToast('تم تحديث صلاحية المستخدم بنجاح!');
-        }
-
-        function handleAddBook(e) {
-            e.preventDefault();
-            const title = document.getElementById('newBookTitle').value;
-            const price = parseFloat(document.getElementById('newBookPrice').value);
-            const category = document.getElementById('newBookCategory').value;
-            const fileInput = document.getElementById('newBookImgFile');
-
-            if (fileInput.files && fileInput.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const newBook = { id: Date.now(), title, price, category, img: e.target.result };
-                    booksData.push(newBook);
-                    renderProducts();
-                    renderAdminData();
-                    showToast('تمت إضافة الكتاب بنجاح!');
-                    e.target.reset();
-                }
-                reader.readAsDataURL(fileInput.files[0]);
-            }
-        }
-
-        function deleteBook(id) {
-            booksData = booksData.filter(b => b.id !== id);
-            renderProducts();
-            renderAdminData();
-            showToast('تم حذف الكتاب بنجاح!');
-        }
-
-        function openEditBookModal(id) {
-            let book = booksData.find(b => b.id === id);
-            if(!book) return;
-            activeEditType = 'book';
-            activeEditId = id;
-            document.getElementById('modalTitleText').innerHTML = `<i class="fas fa-edit" style="color: var(--accent);"></i> تعديل عنوان الكتاب`;
-            document.getElementById('modalInputLabel').innerText = 'العنوان الجديد للكتاب';
-            document.getElementById('modalInputVal').value = book.title;
-            document.getElementById('customEditModal').classList.add('active');
-        }
-
-        function openEditCodeModal(id) {
-            let code = codesData.find(c => c.id === id);
-            if(!code) return;
-            activeEditType = 'code';
-            activeEditId = id;
-            document.getElementById('modalTitleText').innerHTML = `<i class="fas fa-edit" style="color: var(--accent);"></i> تعديل عنوان الكود`;
-            document.getElementById('modalInputLabel').innerText = 'العنوان الجديد للكود';
-            document.getElementById('modalInputVal').value = code.title;
-            document.getElementById('customEditModal').classList.add('active');
-        }
-
-        function closeCustomModal() {
-            document.getElementById('customEditModal').classList.remove('active');
-            activeEditType = null;
-            activeEditId = null;
-        }
-
-        function confirmCustomModal() {
-            const newVal = document.getElementById('modalInputVal').value.trim();
-            if(!newVal) return;
-
-            if(activeEditType === 'book') {
-                let book = booksData.find(b => b.id === activeEditId);
-                if(book) book.title = newVal;
-                showToast('تم تعديل عنوان الكتاب بنجاح!');
-            } else if(activeEditType === 'code') {
-                let code = codesData.find(c => c.id === activeEditId);
-                if(code) code.title = newVal;
-                showToast('تم تعديل عنوان الكود بنجاح!');
-            }
-
-            closeCustomModal();
-            renderProducts();
-            renderAdminData();
-        }
-
-        function handleAddCode(e) {
-            e.preventDefault();
-            const title = document.getElementById('newCodeTitle').value;
-            const price = parseFloat(document.getElementById('newCodePrice').value);
-            const category = document.getElementById('newCodeCategory').value;
-            const tag = document.getElementById('newCodeTag').value;
-
-            codesData.push({ id: Date.now(), title, price, category, tag });
-            renderProducts();
-            renderAdminData();
-            showToast('تمت إضافة الكود بنجاح!');
-            e.target.reset();
-        }
-
-        function deleteCode(id) {
-            codesData = codesData.filter(c => c.id !== id);
-            renderProducts();
-            renderAdminData();
-            showToast('تم حذف الكود بنجاح!');
-        }
-
-        function addBookToCart(id) {
-            let item = booksData.find(x => x.id === id);
-            let existing = cart.find(x => x.id === id);
-            if(existing) {
-                existing.qty++;
-            } else {
-                cart.push({ ...item, qty: 1 });
-            }
-            updateCartUI();
-            showToast('تمت إضافة الكتاب إلى السلة بنجاح!');
-        }
-
-        function updateCartUI() {
-            document.getElementById('cartCount').innerText = cart.reduce((sum, item) => sum + item.qty, 0);
-            const list = document.getElementById('cartItemsList');
-            
-            if(cart.length === 0) {
-                list.innerHTML = `<p style="text-align: center; color: var(--text-muted); margin-top: 2rem;" id="cart-empty-text">السلة فارغة حالياً</p>`;
-                document.getElementById('drawerTotalPrice').innerText = '0 ج.م';
-                document.getElementById('subtotalPrice').innerText = '0 ج.م';
-                document.getElementById('finalTotalPrice').innerText = '0 ج.م';
-                return;
-            }
-
-            list.innerHTML = cart.map((item, idx) => `
-                <div class="cart-item">
-                    <div>
-                        <div style="font-weight: 700; font-size: 0.9rem;">${item.title}</div>
-                        <div style="font-size: 0.8rem; color: var(--accent);">${item.price} ج.م × ${item.qty}</div>
-                    </div>
-                    <button onclick="removeFromCart(${idx})" class="btn-icon" style="width: 28px; height: 28px; color: var(--accent);"><i class="fas fa-trash"></i></button>
-                </div>
-            `).join('');
-
-            let subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-            document.getElementById('drawerTotalPrice').innerText = subtotal + ' ج.م';
-            document.getElementById('subtotalPrice').innerText = subtotal + ' ج.م';
-            document.getElementById('finalTotalPrice').innerText = (subtotal + currentShippingCost) + ' ج.م';
-        }
-
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            updateCartUI();
-        }
-
-        function filterBooks(cat, btn) {
-            document.querySelectorAll('#booksFilterContainer .filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            const grid = document.getElementById('allBooksGrid');
-            const filtered = cat === 'all' ? booksData : booksData.filter(b => b.category === cat);
-            grid.innerHTML = filtered.map(b => `
-                <div class="book-card">
-                    <div>
-                        <div class="book-image-wrapper"><img src="${b.img}" alt="${b.title}"></div>
-                        <h3 class="book-title">${b.title}</h3>
-                    </div>
-                    <div class="book-footer">
-                        <span class="book-price">${b.price} ج.م</span>
-                        <button class="btn-add-cart" onclick="addBookToCart(${b.id})"><i class="fas fa-cart-plus"></i></button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function filterCodes(cat, btn) {
-            document.querySelectorAll('#codesFilterContainer .filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            const grid = document.getElementById('teacherCodesGrid');
-            const filtered = cat === 'all' ? codesData : codesData.filter(c => c.category === cat);
-            grid.innerHTML = filtered.map(c => `
-                <div class="code-card">
-                    <div>
-                        <span class="code-tag">${c.tag}</span>
-                        <h3 class="book-title" style="margin-top:0.4rem;">${c.title}</h3>
-                    </div>
-                    <div class="book-footer">
-                        <span class="book-price">${c.price} ج.م</span>
-                        <button class="btn-submit-shipping" style="padding: 0.5rem 1rem; font-size: 0.85rem;" onclick="checkAuthAndProceed('codeCheckout', ${c.id})"><i class="fas fa-bolt"></i> شراء فوري</button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function calculateShippingCost() {
-            const gov = document.getElementById('shipGov').value;
-            if(gov === 'cairo') currentShippingCost = 35;
-            else if(gov === 'alex') currentShippingCost = 45;
-            else if(gov === 'delta') currentShippingCost = 50;
-            else if(gov === 'upper') currentShippingCost = 65;
-            else currentShippingCost = 0;
-
-            document.getElementById('shippingCost').innerText = currentShippingCost + ' ج.م';
-            let subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-            document.getElementById('finalTotalPrice').innerText = (subtotal + currentShippingCost) + ' ج.م';
-        }
-
-        function selectPayment(method, el) {
-            document.querySelectorAll('.shipping-form-card .payment-option').forEach(opt => opt.classList.remove('active'));
-            el.classList.add('active');
-        }
-
-        function handleDirectCheckout(e) {
-            e.preventDefault();
-            if(!currentUser) {
-                showToast('يجب تسجيل الدخول أولاً');
-                switchPage('authPage');
-                return;
-            }
-            if(cart.length === 0) {
-                showEmptyCartMessage(); // استبدال الـ alert القديم بالـ Toast الأنيق
-                return;
-            }
-            showToast('تم تقديم طلب الكتب بنجاح تحت حسابك!');
-            cart = [];
-            updateCartUI();
-            switchPage('homePage');
-        }
-
-        function handleContactSubmit(e) {
-            e.preventDefault();
-            showToast('تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.');
-            e.target.reset();
-        }
-
-        const i18n = {
-            ar: {
-                announcement: "🚀 شحن سريع لجميع المحافظات + شراء فورى لأكواد المنصات التعليمية! (يجب تسجيل الدخول لإتمام أي شراء)",
-                navHome: "الرئيسية", navBooks: "الكتب والملخصات", navCodes: "أكواد المدرسين 🔥", navShipping: "إتمام الشراء", navAdmin: "لوحة الأدمن ⚙️", navContact: "اتصل بنا",
-                badgeText: "المتجر الأول لطلاب الثانوية العامة",
-                homeTitle: "بوابتك لنحو <span class='highlight-word'>التفوق</span> في الثانوية",
-                homeSub: "اطلب الملازم المعتمدة، الكتب الخارجية، أو اشتري أكواد المنصات لأشهر المدرسين فورياً بدون انتظار.",
-                browseBtn: "تصفح المكتبة", codesBtn: "أكواد المنصات",
-                footerDesc: "المتجر الرائد لتوفر الكتب الخارجية وأكواد منصات الثانوية العامة في مصر فورياً وبأعلى جودة.",
-                footerLinksTitle: "روابط سريعة", footerSupportTitle: "الدعم والمساعدة", footerRights: "جميع الحقوق محفوظة © 2026 I-LEARN STORE"
-            },
-            en: {
-                announcement: "🚀 Fast shipping + instant code purchase! (Must be logged in to purchase)",
-                navHome: "Home", navBooks: "Books & Summaries", navCodes: "Teacher Codes 🔥", navShipping: "Checkout", navAdmin: "Admin Panel ⚙️", navContact: "Contact Us",
-                badgeText: "The #1 Store for High School Students",
-                homeTitle: "Your Gateway to <span class='highlight-word'>Excellence</span> in High School",
-                homeSub: "Order accredited guides, external books, or buy platform codes for top teachers instantly without waiting.",
-                browseBtn: "Browse Library", codesBtn: "Platform Codes",
-                footerDesc: "The leading store to provide external books and high school platform codes instantly with the highest quality.",
-                footerLinksTitle: "Quick Links", footerSupportTitle: "Support & Help", footerRights: "All Rights Reserved © 2026 I-LEARN STORE"
-            }
-        };
-
-        function toggleLanguage() {
-            currentLang = currentLang === 'ar' ? 'en' : 'ar';
-            document.getElementById('langBtn').innerText = currentLang === 'ar' ? 'EN' : 'AR';
-            const lang = i18n[currentLang];
-
-            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-            document.documentElement.lang = currentLang;
-
-            document.getElementById('txt-announcement').innerText = lang.announcement;
-            document.getElementById('nav-homePage').innerText = lang.navHome;
-            document.getElementById('nav-booksPage').innerText = lang.navBooks;
-            document.getElementById('nav-teacherCodesPage').innerText = lang.navCodes;
-            document.getElementById('nav-shippingPage').innerText = lang.navShipping;
-            document.getElementById('nav-adminPage').innerText = lang.navAdmin;
-            document.getElementById('nav-contactPage').innerText = lang.navContact;
-
-            document.getElementById('badge-text').innerText = lang.badgeText;
-            document.getElementById('home-title').innerHTML = lang.homeTitle;
-            document.getElementById('home-subtitle').innerText = lang.homeSub;
-            document.getElementById('txt-browse-btn').innerText = lang.browseBtn;
-            document.getElementById('txt-codes-btn').innerText = lang.codesBtn;
-
-            document.getElementById('footer-desc').innerText = lang.footerDesc;
-            document.getElementById('footer-links-title').innerText = lang.footerLinksTitle;
-            document.getElementById('footer-support-title').innerText = lang.footerSupportTitle;
-            document.getElementById('footer-rights').innerText = lang.footerRights;
-        }
-
-        window.onload = function() {
-            renderProducts();
-            renderAdminData();
-        };
-    </script>
+    <script src="./index.js"></script>
 </body>
 </html>

@@ -14,38 +14,41 @@
 
     <div class="toast-container" id="toastContainer"></div>
 
+   
     <div class="code-popup-overlay" id="codePopupOverlay">
         <div class="code-popup-card">
             <div class="code-popup-icon"><i class="fas fa-ticket-alt"></i></div>
-            <h3 id="popTitle" style="font-size: 1.3rem; font-weight: 800; margin-bottom: 0.5rem;">تم شراء الكود بنجاح!</h3>
-            <p id="popDesc" style="font-size: 0.9rem; color: var(--text-sub); line-height: 1.6;">إليك كود التفعيل الخاص بك، يمكنك نسخ واستخدامه فوراً داخل المنصة:</p>
-            <div class="code-box-display" id="popupCodeText">I-LEARN-984210</div>
-            <div style="display: flex; gap: 10px;">
-                <button onclick="copyGeneratedCode()" id="popCopyBtn" class="btn-submit-shipping btn-secondary" style="flex: 1;"><i class="fas fa-copy"></i> نسخ الكود</button>
-                <button onclick="closeCodePopup()" id="popOkBtn" class="btn-submit-shipping" style="flex: 1;"><i class="fas fa-check"></i> حسناً، فهمت</button>
+            <h3 id="popTitle" style="font-size: 1.1rem; font-weight: 800; margin-bottom: 0.3rem;">تم شراء الكود بنجاح!</h3>
+            <p id="popDesc" style="font-size: 0.8rem; color: var(--text-sub); line-height: 1.4;">إليك كود التفعيل الخاص بك، يمكنك نسخ واستخدامه فوراً داخل المنصة:</p>
+            <div class="code-box-display" id="popupCodeText">KAAF-984210</div>
+            <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                <button onclick="copyGeneratedCode()" id="popCopyBtn" class="btn-submit-shipping btn-secondary" style="flex: 1; min-width: 100px; font-size: 0.8rem;"><i class="fas fa-copy"></i> نسخ الكود</button>
+                <button onclick="closeCodePopup()" id="popOkBtn" class="btn-submit-shipping" style="flex: 1; min-width: 100px; font-size: 0.8rem;"><i class="fas fa-check"></i> فهمت</button>
             </div>
         </div>
     </div>
 
+    
     <div class="code-popup-overlay" id="logoutModalOverlay">
-        <div class="code-popup-card" style="max-width: 420px; text-align: right;" id="logoutCardBox">
-            <div class="code-popup-icon" style="margin: 0 0 1rem 0;"><i class="fas fa-sign-out-alt"></i></div>
-            <h3 id="logoutModalTitle" style="font-size: 1.25rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--text-main);">تسجيل الخروج</h3>
-            <p id="logoutModalMessage" style="font-size: 0.95rem; color: var(--text-sub); line-height: 1.6; margin-bottom: 1.8rem;">هل ترغب في تسجيل الخروج من الحساب؟</p>
-            <div style="display: flex; gap: 10px;">
-                <button onclick="confirmLogout()" id="logoutYesBtn" class="btn-submit-shipping" style="flex: 1; background: #ef4444; box-shadow: 0 6px 18px rgba(239, 68, 68, 0.4);">نعم، خروج</button>
-                <button onclick="closeLogoutModal()" id="logoutCancelBtn" class="btn-submit-shipping btn-secondary" style="flex: 1;">إلغاء</button>
+        <div class="code-popup-card" style="max-width: 360px; text-align: right;" id="logoutCardBox">
+            <div class="code-popup-icon" style="margin: 0 0 0.8rem 0;"><i class="fas fa-sign-out-alt"></i></div>
+            <h3 id="logoutModalTitle" style="font-size: 1.05rem; font-weight: 800; margin-bottom: 0.3rem; color: var(--text-main);">تسجيل الخروج</h3>
+            <p id="logoutModalMessage" style="font-size: 0.85rem; color: var(--text-sub); line-height: 1.4; margin-bottom: 1.2rem;">هل ترغب في تسجيل الخروج من الحساب؟</p>
+            <div style="display: flex; gap: 6px;">
+                <button onclick="confirmLogout()" id="logoutYesBtn" class="btn-submit-shipping" style="flex: 1; background: #ef4444; font-size: 0.82rem;">نعم، خروج</button>
+                <button onclick="closeLogoutModal()" id="logoutCancelBtn" class="btn-submit-shipping btn-secondary" style="flex: 1; font-size: 0.82rem;">إلغاء</button>
             </div>
         </div>
     </div>
 
+   
     <div class="custom-modal-overlay" id="trackingModal">
-        <div class="custom-modal" style="max-width: 520px;">
+        <div class="custom-modal">
             <h3 id="trackModalHeader"><i class="fas fa-shipping-fast" style="color: #2563eb;"></i> تتبع الشحنة - <span id="trackModalOrderId">#1001</span></h3>
             
-            <div style="background: var(--bg-body); padding: 1rem; border-radius: 12px; margin-top: 1rem; border: 1px solid var(--glass-border);">
-                <div style="font-size: 0.85rem; color: var(--text-muted);"><span id="lblTrackAddr">عنوان الشحن:</span> <span id="trackModalAddress" style="color: var(--text-main); font-weight: 700;">-</span></div>
-                <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;"><span id="lblTrackPay">طريقة الدفع:</span> <span id="trackModalPayment" style="color: #2563eb; font-weight: 700;">-</span></div>
+            <div style="background: var(--bg-body); padding: 0.8rem; border-radius: 10px; margin-top: 0.8rem; border: 1px solid var(--glass-border);">
+                <div style="font-size: 0.75rem; color: var(--text-muted);"><span id="lblTrackAddr">عنوان الشحن:</span> <span id="trackModalAddress" style="color: var(--text-main); font-weight: 700;">-</span></div>
+                <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 2px;"><span id="lblTrackPay">طريقة الدفع:</span> <span id="trackModalPayment" style="color: #2563eb; font-weight: 700;">-</span></div>
             </div>
 
             <div class="tracking-timeline" id="trackingTimelineContainer">
@@ -79,26 +82,29 @@
                 </div>
             </div>
 
-            <div class="custom-modal-actions" style="margin-top: 2rem;">
-                <button class="btn-submit-shipping" id="trackCloseBtn" onclick="closeTrackingModal()" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">إغلاق</button>
+            <div class="custom-modal-actions" style="margin-top: 1.2rem;">
+                <button class="btn-submit-shipping" id="trackCloseBtn" onclick="closeTrackingModal()" style="padding: 0.4rem 1rem; font-size: 0.8rem;">إغلاق</button>
             </div>
         </div>
     </div>
 
+   
     <div class="announcement-bar" id="topAnnouncementBar">
         <i class="fas fa-bullhorn"></i>
-        <span id="txt-announcement">🚀 شحن سريع لجميع المحافظات + شراء فورى لأكواد المنصات التعليمية! (يجب تسجيل الدخول لإتمام أي شراء)</span>
+        <span id="txt-announcement">🚀 شحن سريع لجميع المحافظات + شراء فورى لأكواد المنصات التعليمية!</span>
     </div>
 
+   
     <header class="header">
         <div class="header-content">
+            <button class="btn-icon menu-toggle-btn" onclick="toggleMobileMenu()" title="القائمة الرئيسية"><i class="fas fa-bars"></i></button>
+
             <div class="logo-3d" onclick="switchPage('homePage')">
-                <div class="logo-icon"><i class="fas fa-graduation-cap"></i></div>
-                <div class="logo-text">KAAF <span>STORE</span></div>
+                <img src="./IMG_9457.PNG" alt="KAAF STORE Logo" class="store-logo-img">
             </div>
 
             <nav>
-                <ul class="nav">
+                <ul class="nav-desktop">
                     <li><a onclick="switchPage('homePage')" id="nav-homePage" class="active">الرئيسية</a></li>
                     <li><a onclick="switchPage('booksPage')" id="nav-booksPage">الكتب والملخصات</a></li>
                     <li><a onclick="switchPage('teacherCodesPage')" id="nav-teacherCodesPage">أكواد المدرسين 🔥</a></li>
@@ -108,32 +114,53 @@
                 </ul>
             </nav>
 
-            <div class="header-actions" style="position: relative;">
-                <button class="btn-icon" onclick="openAuthModal()" title="تسجيل الدخول / الحساب" id="authBtnIcon"><i class="fas fa-user"></i></button>
+            <div class="header-actions">
+                <button class="btn-icon" onclick="openAuthModal()" title="حسابي" id="authBtnIcon"><i class="fas fa-user"></i></button>
                 
                 <div style="position: relative;">
-                    <button class="btn-icon" onclick="toggleNotifDropdown()" title="الإشعارات والتنبيهات"><i class="fas fa-bell"></i><span class="notif-count" id="notifCountBadge">1</span></button>
+                    <button class="btn-icon" onclick="toggleNotifDropdown(event)" title="الإشعارات"><i class="fas fa-bell"></i><span class="notif-count" id="notifCountBadge">1</span></button>
                     <div class="notif-dropdown" id="notifDropdownMenu">
-                        <div style="font-weight: 800; font-size: 0.9rem; margin-bottom: 0.8rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem; display: flex; justify-content: space-between; align-items: center;">
-                            <span>الإشعارات والتنبيهات</span>
-                            <span style="font-size: 0.75rem; color: var(--accent); cursor: pointer;" onclick="clearNotifications()">حذف الكل</span>
+                        <div class="notif-header-box">
+                            <span id="notifBoxTitle">الإشعارات والتنبيهات</span>
+                            <span style="font-size: 0.7rem; color: var(--accent); cursor: pointer;" onclick="clearNotifications()" id="notifClearBtn">حذف الكل</span>
                         </div>
-                        <div id="notifListContainer" style="max-height: 220px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px;">
+                        <div id="notifListContainer" style="max-height: 180px; overflow-y: auto; display: flex; flex-direction: column; gap: 4px;">
                             <div class="notif-item">
-                                <i class="fas fa-info-circle"></i>
-                                <div>مرحباً بك في متجر كاف ستور! تصفح أفضل الكتب والأكواد التعليمية.</div>
+                                <i class="fas fa-bell"></i>
+                                <div class="notif-item-content" id="notifWelcomeText">مرحباً بك في متجر كاف ستور! تصفح أفضل الكتب والأكواد التعليمية.</div>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <button class="btn-lang" onclick="toggleLanguage()" id="langBtn">EN</button>
-                <button class="btn-icon" onclick="toggleTheme()"><i class="fas fa-sun" id="themeIcon"></i></button>
-                <button class="btn-icon" onclick="toggleCart()"><i class="fas fa-shopping-cart"></i><span class="cart-count" id="cartCount">0</span></button>
+                <button class="btn-icon" onclick="toggleTheme()" title="المظهر"><i class="fas fa-sun" id="themeIcon"></i></button>
+                <button class="btn-icon" onclick="toggleCart()" title="السلة"><i class="fas fa-shopping-cart"></i><span class="cart-count" id="cartCount">0</span></button>
             </div>
         </div>
     </header>
 
+
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()">
+        <div class="mobile-menu-drawer" onclick="event.stopPropagation()">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--glass-border); padding-bottom: 0.7rem;">
+                <div class="logo-3d" onclick="toggleMobileMenu(); switchPage('homePage')">
+                    <img src="./IMG_9457.PNG" alt="KAAF STORE Logo" class="store-logo-img" style="height: 35px;">
+                </div>
+                <button onclick="toggleMobileMenu()" class="btn-icon" style="width: 30px; height: 30px;"><i class="fas fa-times"></i></button>
+            </div>
+            <ul class="mobile-menu-links">
+                <li><a onclick="toggleMobileMenu(); switchPage('homePage')" id="mob-nav-home"><i class="fas fa-home"></i> الرئيسية</a></li>
+                <li><a onclick="toggleMobileMenu(); switchPage('booksPage')" id="mob-nav-books"><i class="fas fa-book"></i> الكتب والملخصات</a></li>
+                <li><a onclick="toggleMobileMenu(); switchPage('teacherCodesPage')" id="mob-nav-codes"><i class="fas fa-key"></i> أكواد المدرسين 🔥</a></li>
+                <li><a onclick="toggleMobileMenu(); switchPage('shippingPage')" id="mob-nav-shipping"><i class="fas fa-credit-card"></i> إتمام الشراء</a></li>
+                <li><a onclick="toggleMobileMenu(); switchPage('myOrdersPage')" id="mob-nav-orders"><i class="fas fa-box"></i> طلباتي 📦</a></li>
+                <li><a onclick="toggleMobileMenu(); switchPage('adminPage')" id="mob-nav-admin" style="color: var(--accent);"><i class="fas fa-cog"></i> لوحة الأدمن ⚙️</a></li>
+            </ul>
+        </div>
+    </div>
+
+    
     <main class="page" id="authPage">
         <section class="section">
             <div class="auth-container checkout-card">
@@ -151,7 +178,7 @@
                         <i class="fas fa-lock input-icon"></i>
                         <input type="password" id="loginPassword" required placeholder="كلمة المرور">
                     </div>
-                    <button type="submit" id="btnLoginSubmit" class="btn-pay-blue" style="width: 100%; margin-top: 1rem;">
+                    <button type="submit" id="btnLoginSubmit" class="btn-pay-blue" style="width: 100%; margin-top: 0.6rem;">
                         <i class="fas fa-sign-in-alt"></i> دخول للمنصة
                     </button>
                 </form>
@@ -166,10 +193,57 @@
                         <input type="email" id="signupEmail" required placeholder="البريد الإلكتروني">
                     </div>
                     <div class="input-icon-group">
+                        <i class="fas fa-phone input-icon"></i>
+                        <input type="tel" id="signupPhone" required placeholder="رقم الهاتف أو الواتساب">
+                    </div>
+                    <div class="input-icon-group">
+                        <i class="fas fa-graduation-cap input-icon"></i>
+                        <select id="signupGrade" required style="width:100%; padding:0.7rem 2.4rem 0.7rem 0.8rem; border-radius:10px; border:1px solid var(--glass-border); background:var(--bg-body); color:var(--text-main); font-family:inherit; font-size:0.85rem;">
+                            <option value="" disabled selected>اختر الصف الدراسي / الشعبة</option>
+                            <option value="thanaweya_3_science">ثانوية عامة (علمي علوم)</option>
+                            <option value="thanaweya_3_math">ثانوية عامة (علمي رياضة)</option>
+                            <option value="thanaweya_3_arts">ثانوية عامة (أدبي)</option>
+                            <option value="thanaweya_1_2">أولى أو ثانية ثانوى</option>
+                        </select>
+                    </div>
+                    <div class="input-icon-group">
+                        <i class="fas fa-city input-icon"></i>
+                        <select id="signupGov" required style="width:100%; padding:0.7rem 2.4rem 0.7rem 0.8rem; border-radius:10px; border:1px solid var(--glass-border); background:var(--bg-body); color:var(--text-main); font-family:inherit; font-size:0.85rem;">
+                            <option value="" disabled selected>اختر المحافظة</option>
+                            <option value="Cairo">القاهرة</option>
+                            <option value="Giza">الجيزة</option>
+                            <option value="Alexandria">الإسكندرية</option>
+                            <option value="Dakahlia">الدقهلية</option>
+                            <option value="Sharqia">الشرقية</option>
+                            <option value="Gharbiya">الغربية</option>
+                            <option value="Menoufia">المنوفية</option>
+                            <option value="Qalyubia">القليوبية</option>
+                            <option value="Beheira">البحيرة</option>
+                            <option value="KafrElSheikh">كفر الشيخ</option>
+                            <option value="Damietta">دمياط</option>
+                            <option value="PortSaid">بورسعيد</option>
+                            <option value="Ismailia">الإسماعيلية</option>
+                            <option value="Suez">السويس</option>
+                            <option value="Fayoum">الفيوم</option>
+                            <option value="BeniSuef">بني سويف</option>
+                            <option value="Minya">المنيا</option>
+                            <option value="Assiut">أسيوط</option>
+                            <option value="Sohag">سوهاج</option>
+                            <option value="Qena">قنا</option>
+                            <option value="Aswan">أسوان</option>
+                            <option value="Luxor">الأقصر</option>
+                            <option value="RedSea">البحر الأحمر</option>
+                            <option value="NewValley">الوادي الجديد</option>
+                            <option value="Matrouh">مطروح</option>
+                            <option value="NorthSinai">شمال سيناء</option>
+                            <option value="SouthSinai">جنوب سيناء</option>
+                        </select>
+                    </div>
+                    <div class="input-icon-group">
                         <i class="fas fa-lock input-icon"></i>
                         <input type="password" id="signupPassword" required placeholder="كلمة المرور">
                     </div>
-                    <button type="submit" id="btnSignupSubmit" class="btn-pay-blue" style="width: 100%; margin-top: 1rem;">
+                    <button type="submit" id="btnSignupSubmit" class="btn-pay-blue" style="width: 100%; margin-top: 0.6rem;">
                         <i class="fas fa-user-plus"></i> إنشاء الحساب فوراً
                     </button>
                 </form>
@@ -177,6 +251,7 @@
         </section>
     </main>
 
+    
     <main class="page active" id="homePage">
         <section class="hero-section">
             <div class="hero-content">
@@ -186,18 +261,18 @@
                 </div>
                 
                 <h1 class="hero-title" id="home-title">
-                    بوابتك لنحو <span class="highlight-word" id="highlighted-word">التفوق</span> في الثانوية
+                    بوابتك نحو <span class="highlight-word" id="highlighted-word">التفوق</span> في الثانوية
                 </h1>
                 
                 <p class="hero-subtitle" id="home-subtitle">
                     اختر المادة ثم المدرس المفضل لديك، واطلب كتبك أو أكوادك التعليمية فورياً.
                 </p>
 
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                    <button onclick="switchPage('booksPage')" class="btn-submit-shipping">
+                <div style="display: flex; gap: 0.6rem; flex-wrap: wrap; justify-content: center;" class="hero-btns-row">
+                    <button onclick="switchPage('booksPage')" class="btn-submit-shipping" style="font-size: 0.82rem;">
                         <i class="fas fa-book-open"></i> <span id="txt-browse-btn">تصفح الكتب والملازم</span>
                     </button>
-                    <button onclick="switchPage('teacherCodesPage')" class="btn-submit-shipping btn-secondary">
+                    <button onclick="switchPage('teacherCodesPage')" class="btn-submit-shipping btn-secondary" style="font-size: 0.82rem;">
                         <i class="fas fa-key"></i> <span id="txt-codes-btn">أكواد المنصات</span>
                     </button>
                 </div>
@@ -208,10 +283,10 @@
                     <img src="./Screenshot 2026-08-04 015947.png" alt="Book Preview">
                 </div>
                 <div class="floating-badge">
-                    <i class="fas fa-bolt" style="font-size: 1.8rem; color: var(--accent);"></i>
+                    <i class="fas fa-bolt" style="font-size: 1.2rem; color: var(--accent);"></i>
                     <div>
-                        <div style="font-weight: 800; font-size: 0.9rem;" id="float-title">اختر المادة والمدرس</div>
-                        <div style="font-size: 0.75rem; color: var(--text-sub);" id="float-subtitle">بكل سهولة وسرعة</div>
+                        <div style="font-weight: 800; font-size: 0.78rem;" id="float-title">اختر المادة والمدرس</div>
+                        <div style="font-size: 0.65rem; color: var(--text-sub);" id="float-subtitle">بكل سهولة وسرعة</div>
                     </div>
                 </div>
             </div>
@@ -219,40 +294,41 @@
 
         <div class="stats-bar">
             <div class="stat-item">
-                <div class="stat-number">+10,000</div>
-                <div class="stat-label" id="statLbl1">طالب يثق بنا</div>
+                <div class="stat-number" style="font-size: 30px;">+10K</div>
+                <div class="stat-label" id="statLbl1" style="font-size: 10px;" >طالب يثق بنا</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number">+500</div>
+                <div class="stat-number" style="font-size: 30px;">+500</div>
                 <div class="stat-label" id="statLbl2">ملزمة وكتاب متاح</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number">24/7</div>
+                <div class="stat-number" style="font-size: 30px;">24/7</div>
                 <div class="stat-label" id="statLbl3">تسليم فورى للأكواد</div>
             </div>
         </div>
 
-        <section class="section" style="padding-top: 1rem;">
+        <section class="section" style="padding-top: 0.2rem;">
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-bolt"></i></div>
-                    <h3 id="feat1Title">أكواد فورية</h3>
-                    <p id="feat1Desc" style="color: var(--text-sub); font-size: 0.9rem;">استلم كود الشرح أو المراجعة مباشرة بعد الدفع.</p>
+                    <h3 id="feat1Title" style="font-size: 0.95rem; margin-bottom: 0.3rem;">أكواد فورية</h3>
+                    <p id="feat1Desc" style="color: var(--text-sub); font-size: 0.8rem;">استلم كود الشرح أو المراجعة مباشرة بعد الدفع.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-shipping-fast"></i></div>
-                    <h3 id="feat2Title" style="margin-bottom: 0.5rem;">توصيل سريع</h3>
-                    <p id="feat2Desc" style="color: var(--text-sub); font-size: 0.9rem;">شحن المذكرات والكتب لجميع المحافظات خلال 24 - 48 ساعة.</p>
+                    <h3 id="feat2Title" style="font-size: 0.95rem; margin-bottom: 0.3rem;">توصيل سريع</h3>
+                    <p id="feat2Desc" style="color: var(--text-sub); font-size: 0.8rem;">شحن المذكرات والكتب لجميع المحافظات خلال 24 - 48 ساعة.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-credit-card"></i></div>
-                    <h3 id="feat3Title" style="margin-bottom: 0.5rem;">دفع إلكتروني سهل</h3>
-                    <p id="feat3Desc" style="color: var(--text-sub); font-size: 0.9rem;">ادفع عن طريق الفيزا أو المحفظة الإلكترونية بسهولة وآمان.</p>
+                    <h3 id="feat3Title" style="font-size: 0.95rem; margin-bottom: 0.3rem;">دفع إلكتروني سهل</h3>
+                    <p id="feat3Desc" style="color: var(--text-sub); font-size: 0.8rem;">ادفع عن طريق الفيزا أو المحفظة الإلكترونية بسهولة وآمان.</p>
                 </div>
             </div>
         </section>
     </main>
 
+   
     <main class="page" id="booksPage">
         <section class="section">
             <div class="section-header">
@@ -262,25 +338,31 @@
 
             <div id="bookSubjectsSection">
                 <div class="filter-container">
-                    <button class="filter-btn active" onclick="selectBookSubject('physics', this)"><i class="fas fa-atom"></i> <span id="subPhys">الفيزياء</span></button>
-                    <button class="filter-btn" onclick="selectBookSubject('math', this)"><i class="fas fa-square-root-alt"></i> <span id="subMath">الرياضيات</span></button>
-                    <button class="filter-btn" onclick="selectBookSubject('chemistry', this)"><i class="fas fa-flask"></i> <span id="subChem">الكيمياء</span></button>
+                    <button class="filter-btn active" onclick="selectBookSubject('arabic', this)"><i class="fas fa-book"></i> <span id="catAr">عربي</span></button>
+                    <button class="filter-btn" onclick="selectBookSubject('chemistry', this)"><i class="fas fa-flask"></i> <span id="catChem">كيمياء</span></button>
+                    <button class="filter-btn" onclick="selectBookSubject('english', this)"><i class="fas fa-language"></i> <span id="catEng">انجليش</span></button>
+                    <button class="filter-btn" onclick="selectBookSubject('history', this)"><i class="fas fa-landmark"></i> <span id="catHist">تاريخ</span></button>
+                    <button class="filter-btn" onclick="selectBookSubject('math', this)"><i class="fas fa-square-root-alt"></i> <span id="catMath">ماث / رياضيات</span></button>
+                    <button class="filter-btn" onclick="selectBookSubject('physics', this)"><i class="fas fa-atom"></i> <span id="catPhys">فيزياء</span></button>
+                    <button class="filter-btn" onclick="selectBookSubject('programming', this)"><i class="fas fa-code"></i> <span id="catProg">برمجه</span></button>
+                    <button class="filter-btn" onclick="selectBookSubject('biology', this)"><i class="fas fa-dna"></i> <span id="catBio">بايو / أحياء</span></button>
                 </div>
                 <div id="bookTeachersContainer" class="teachers-grid"></div>
             </div>
 
             <div id="bookProductsSection" style="display: none;">
-                <button onclick="backToBookSubjects()" id="backBooksBtn" class="btn-submit-shipping btn-secondary" style="margin-bottom: 2rem;">
+                <button onclick="backToBookSubjects()" id="backBooksBtn" class="btn-submit-shipping btn-secondary" style="margin-bottom: 1.2rem; font-size: 0.8rem;">
                     <i class="fas fa-arrow-right"></i> الرجوع لاختيار المواد والمدرسين
                 </button>
-                <div class="section-header" style="margin-bottom: 1.5rem;">
-                    <h3 id="selectedBookTeacherTitle" style="font-size: 1.6rem; color: var(--accent);">كتب وملازم المدرس</h3>
+                <div class="section-header" style="margin-bottom: 1rem;">
+                    <h3 id="selectedBookTeacherTitle" style="font-size: 1.2rem; color: var(--accent);">كتب وملازم المدرس</h3>
                 </div>
                 <div class="books-grid" id="teacherBooksGrid"></div>
             </div>
         </section>
     </main>
 
+   
     <main class="page" id="teacherCodesPage">
         <section class="section">
             <div class="section-header">
@@ -290,25 +372,31 @@
 
             <div id="codeSubjectsSection">
                 <div class="filter-container">
-                    <button class="filter-btn active" onclick="selectCodeSubject('physics', this)"><i class="fas fa-atom"></i> <span id="codeSubPhys">الفيزياء</span></button>
-                    <button class="filter-btn" onclick="selectCodeSubject('math', this)"><i class="fas fa-square-root-alt"></i> <span id="codeSubMath">الرياضيات</span></button>
-                    <button class="filter-btn" onclick="selectCodeSubject('chemistry', this)"><i class="fas fa-flask"></i> <span id="codeSubChem">الكيمياء</span></button>
+                    <button class="filter-btn active" onclick="selectCodeSubject('arabic', this)"><i class="fas fa-book"></i> <span id="codeCatAr">عربي</span></button>
+                    <button class="filter-btn" onclick="selectCodeSubject('chemistry', this)"><i class="fas fa-flask"></i> <span id="codeCatChem">كيمياء</span></button>
+                    <button class="filter-btn" onclick="selectCodeSubject('english', this)"><i class="fas fa-language"></i> <span id="codeCatEng">انجليش</span></button>
+                    <button class="filter-btn" onclick="selectCodeSubject('history', this)"><i class="fas fa-landmark"></i> <span id="codeCatHist">تاريخ</span></button>
+                    <button class="filter-btn" onclick="selectCodeSubject('math', this)"><i class="fas fa-square-root-alt"></i> <span id="codeCatMath">ماث / رياضيات</span></button>
+                    <button class="filter-btn" onclick="selectCodeSubject('physics', this)"><i class="fas fa-atom"></i> <span id="codeCatPhys">فيزياء</span></button>
+                    <button class="filter-btn" onclick="selectCodeSubject('programming', this)"><i class="fas fa-code"></i> <span id="codeCatProg">برمجه</span></button>
+                    <button class="filter-btn" onclick="selectCodeSubject('biology', this)"><i class="fas fa-dna"></i> <span id="codeCatBio">بايو / أحياء</span></button>
                 </div>
                 <div id="codeTeachersContainer" class="teachers-grid"></div>
             </div>
 
             <div id="codeProductsSection" style="display: none;">
-                <button onclick="backToCodeSubjects()" id="backCodesBtn" class="btn-submit-shipping btn-secondary" style="margin-bottom: 2rem;">
+                <button onclick="backToCodeSubjects()" id="backCodesBtn" class="btn-submit-shipping btn-secondary" style="margin-bottom: 1.2rem; font-size: 0.8rem;">
                     <i class="fas fa-arrow-right"></i> الرجوع لاختيار المواد والمدرسين
                 </button>
-                <div class="section-header" style="margin-bottom: 1.5rem;">
-                    <h3 id="selectedCodeTeacherTitle" style="font-size: 1.6rem; color: var(--accent);">أكواد ومحاضرات المدرس</h3>
+                <div class="section-header" style="margin-bottom: 1rem;">
+                    <h3 id="selectedCodeTeacherTitle" style="font-size: 1.2rem; color: var(--accent);">أكواد ومحاضرات المدرس</h3>
                 </div>
                 <div class="codes-grid" id="teacherCodesGrid"></div>
             </div>
         </section>
     </main>
 
+   
     <main class="page" id="codeCheckoutPage">
         <section class="section">
             <div class="section-header">
@@ -316,15 +404,15 @@
                 <p id="codeCheckSub" class="section-subtitle">ادفع فوراً واستلم الكود مباشرة في منتصف الشاشة بدون انتظار</p>
             </div>
 
-            <div style="max-width: 600px; margin: 0 auto;">
+            <div style="max-width: 500px; margin: 0 auto;">
                 <div class="checkout-card">
-                    <h3 id="codeCheckDetailsTitle" style="font-size:1.15rem; margin-bottom:1rem; color: var(--accent); display:flex; align-items:center; gap:8px;">
+                    <h3 id="codeCheckDetailsTitle" style="font-size:1rem; margin-bottom:0.8rem; color: var(--accent); display:flex; align-items:center; gap:6px;">
                         <i class="fas fa-ticket-alt"></i> تفاصيل الكود المطلوب
                     </h3>
-                    <div id="checkoutCodeDetails" style="background: var(--bg-body); padding: 1rem; border-radius: 12px; border: 1px solid var(--glass-border); margin-bottom: 1.5rem;">
+                    <div id="checkoutCodeDetails" style="background: var(--bg-body); padding: 0.8rem; border-radius: 10px; border: 1px solid var(--glass-border); margin-bottom: 1rem;">
                     </div>
 
-                    <h3 id="codePayMethodTitle" style="font-size:1.1rem; margin-bottom:0.8rem;">اختر طريقة الدفع الفوري:</h3>
+                    <h3 id="codePayMethodTitle" style="font-size:0.95rem; margin-bottom:0.6rem;">اختر طريقة الدفع الفوري:</h3>
                     
                     <div class="payment-options-list">
                         <div class="payment-radio-card active" onclick="selectCodePaymentMethod('visa', this)">
@@ -335,9 +423,8 @@
                                     <div class="payment-subtitle-sub" id="subVisa">بطاقة ائتمانية / دفع آمن عبر Paymob</div>
                                 </div>
                             </div>
-                            <div class="payment-badge-logo" style="display: flex; gap: 8px; align-items: center;">
-                                <i class="fas fa-credit-card"></i> 
-                                <span style="font-size: 0.8rem; background: #2563eb; color: white; padding: 2px 8px; border-radius: 6px; font-weight: 700;">Paymob</span>
+                            <div class="payment-badge-logo">
+                                <span style="font-size: 0.7rem; background: #2563eb; color: white; padding: 2px 5px; border-radius: 4px;">Paymob</span>
                             </div>
                         </div>
 
@@ -346,15 +433,15 @@
                                 <div class="custom-radio"></div>
                                 <div>
                                     <div class="payment-title-main">Mobile Wallet</div>
-                                    <div class="payment-subtitle-sub" id="subWallet">محفظة إلكترونية (فودافون كاش، أورنج، إلخ)</div>
+                                    <div class="payment-subtitle-sub" id="subWallet">محفظة إلكترونية</div>
                                 </div>
                             </div>
-                            <div class="payment-badge-logo" style="color:#e60000;"><i class="fas fa-wallet"></i> Wallet</div>
+                            <div class="payment-badge-logo" style="color:#e60000;"><i class="fas fa-wallet"></i></div>
                         </div>
                     </div>
 
-                    <div id="codeVisaFieldsSection" style="margin-top: 1.2rem; background: var(--bg-body); padding: 1.2rem; border-radius: 12px; border: 1px solid var(--glass-border);">
-                        <h4 id="codeVisaTitle" style="font-size: 0.95rem; margin-bottom: 1rem; color: var(--accent); display:flex; align-items:center; gap:8px;">
+                    <div id="codeVisaFieldsSection" style="margin-top: 0.8rem; background: var(--bg-body); padding: 0.9rem; border-radius: 10px; border: 1px solid var(--glass-border);">
+                        <h4 id="codeVisaTitle" style="font-size: 0.85rem; margin-bottom: 0.7rem; color: var(--accent); display:flex; align-items:center; gap:5px;">
                             <i class="fas fa-credit-card"></i> إدخال بيانات الكارت
                         </h4>
                         <div class="input-icon-group">
@@ -365,33 +452,33 @@
                             <i class="fas fa-credit-card input-icon"></i>
                             <input type="text" id="cNum" maxlength="19" placeholder="رقم الكارت (16 رقم)">
                         </div>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                            <div class="input-icon-group">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+                            <div class="input-icon-group" style="margin-bottom:0;">
                                 <i class="fas fa-calendar-alt input-icon"></i>
                                 <input type="text" maxlength="5" placeholder="MM/YY">
                             </div>
-                            <div class="input-icon-group">
+                            <div class="input-icon-group" style="margin-bottom:0;">
                                 <i class="fas fa-lock input-icon"></i>
                                 <input type="password" maxlength="4" placeholder="CVV">
                             </div>
                         </div>
                     </div>
 
-                    <div id="codeWalletFieldsSection" style="display: none; margin-top: 1.2rem; background: var(--bg-body); padding: 1.2rem; border-radius: 12px; border: 1px solid var(--glass-border);">
-                        <h4 id="codeWalletTitle" style="font-size: 0.95rem; margin-bottom: 1rem; color: #2563eb; display:flex; align-items:center; gap:8px;">
+                    <div id="codeWalletFieldsSection" style="display: none; margin-top: 0.8rem; background: var(--bg-body); padding: 0.9rem; border-radius: 10px; border: 1px solid var(--glass-border);">
+                        <h4 id="codeWalletTitle" style="font-size: 0.85rem; margin-bottom: 0.7rem; color: #2563eb; display:flex; align-items:center; gap:5px;">
                             <i class="fas fa-mobile-alt"></i> إدخال بيانات المحفظة
                         </h4>
                         <div class="input-icon-group">
                             <i class="fas fa-phone input-icon"></i>
                             <input type="tel" id="cPhone" placeholder="رقم المحفظة">
                         </div>
-                        <div class="input-icon-group">
+                        <div class="input-icon-group" style="margin-bottom:0;">
                             <i class="fas fa-key input-icon"></i>
                             <input type="password" id="cPin" placeholder="كلمة مرور المحفظة / PIN">
                         </div>
                     </div>
 
-                    <button onclick="confirmInstantCodePurchase()" id="btnInstantPay" class="btn-pay-blue" style="width: 100%; margin-top: 1.5rem;">
+                    <button onclick="confirmInstantCodePurchase()" id="btnInstantPay" class="btn-pay-blue" style="width: 100%; margin-top: 1rem;">
                         <i class="fas fa-bolt"></i> إتمام الدفع واستلام الكود فوراً
                     </button>
                 </div>
@@ -399,8 +486,9 @@
         </section>
     </main>
 
+    
     <main class="page" id="shippingPage">
-        <section class="section" style="padding-top: 2rem;">
+        <section class="section" style="padding-top: 1rem;">
             <div class="checkout-stepper">
                 <div class="step-item">
                     <div class="step-number"><i class="fas fa-check"></i></div>
@@ -441,7 +529,7 @@
                             <i class="fas fa-phone input-icon"></i>
                             <input type="tel" id="shipPhone" required placeholder="Phone Number | رقم الهاتف">
                         </div>
-                        <div class="input-icon-group">
+                        <div class="input-icon-group" style="margin-bottom: 0;">
                             <i class="fas fa-envelope input-icon"></i>
                             <input type="email" id="shipEmail" placeholder="Email Address | البريد الإلكتروني">
                         </div>
@@ -464,7 +552,7 @@
                                 <option value="Upper">الصعيد والقناة - Upper Egypt (65 EGP)</option>
                             </select>
                         </div>
-                        <div class="input-icon-group">
+                        <div class="input-icon-group" style="margin-bottom: 0;">
                             <i class="fas fa-home input-icon"></i>
                             <input type="text" id="shipAddress" required placeholder="Address | العنوان بالتفصيل">
                         </div>
@@ -486,9 +574,8 @@
                                         <div class="payment-subtitle-sub" id="chkSubVisa">بطاقة ائتمانية / دفع آمن عبر Paymob</div>
                                     </div>
                                 </div>
-                                <div class="payment-badge-logo" style="display: flex; gap: 8px; align-items: center;">
-                                    <i class="fas fa-credit-card"></i> 
-                                    <span style="font-size: 0.8rem; background: #2563eb; color: white; padding: 2px 8px; border-radius: 6px; font-weight: 700;">Paymob</span>
+                                <div class="payment-badge-logo">
+                                    <span style="font-size: 0.7rem; background: #2563eb; color: white; padding: 2px 5px; border-radius: 4px;">Paymob</span>
                                 </div>
                             </div>
 
@@ -500,12 +587,12 @@
                                         <div class="payment-subtitle-sub" id="chkSubWallet">محفظة إلكترونية</div>
                                     </div>
                                 </div>
-                                <div class="payment-badge-logo" style="color:#e60000;"><i class="fas fa-wallet"></i> Wallet</div>
+                                <div class="payment-badge-logo" style="color:#e60000;"><i class="fas fa-wallet"></i></div>
                             </div>
                         </div>
 
-                        <div id="visaFieldsSection" style="margin-top: 1.2rem; background: var(--bg-body); padding: 1.2rem; border-radius: 12px; border: 1px solid var(--glass-border);">
-                            <h4 id="chkVisaTitle" style="font-size: 0.95rem; margin-bottom: 1rem; color: var(--accent); display:flex; align-items:center; gap:8px;">
+                        <div id="visaFieldsSection" style="margin-top: 0.8rem; background: var(--bg-body); padding: 0.9rem; border-radius: 10px; border: 1px solid var(--glass-border);">
+                            <h4 id="chkVisaTitle" style="font-size: 0.85rem; margin-bottom: 0.7rem; color: var(--accent); display:flex; align-items:center; gap:5px;">
                                 <i class="fas fa-credit-card"></i> إدخال بيانات الكارت
                             </h4>
                             <div class="input-icon-group">
@@ -516,33 +603,33 @@
                                 <i class="fas fa-credit-card input-icon"></i>
                                 <input type="text" maxlength="19" placeholder="رقم الكارت (16 رقم)">
                             </div>
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                                <div class="input-icon-group">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+                                <div class="input-icon-group" style="margin-bottom:0;">
                                     <i class="fas fa-calendar-alt input-icon"></i>
                                     <input type="text" maxlength="5" placeholder="MM/YY">
                                 </div>
-                                <div class="input-icon-group">
+                                <div class="input-icon-group" style="margin-bottom:0;">
                                     <i class="fas fa-lock input-icon"></i>
                                     <input type="password" maxlength="4" placeholder="CVV">
                                 </div>
                             </div>
                         </div>
 
-                        <div id="walletFieldsSection" style="display: none; margin-top: 1.2rem; background: var(--bg-body); padding: 1.2rem; border-radius: 12px; border: 1px solid var(--glass-border);">
-                            <h4 id="chkWalletTitle" style="font-size: 0.95rem; margin-bottom: 1rem; color: #2563eb; display:flex; align-items:center; gap:8px;">
+                        <div id="walletFieldsSection" style="display: none; margin-top: 0.8rem; background: var(--bg-body); padding: 0.9rem; border-radius: 10px; border: 1px solid var(--glass-border);">
+                            <h4 id="chkWalletTitle" style="font-size: 0.85rem; margin-bottom: 0.7rem; color: #2563eb; display:flex; align-items:center; gap:5px;">
                                 <i class="fas fa-mobile-alt"></i> إدخال بيانات المحفظة
                             </h4>
                             <div class="input-icon-group">
                                 <i class="fas fa-phone input-icon"></i>
                                 <input type="tel" placeholder="رقم المحفظة">
                             </div>
-                            <div class="input-icon-group">
+                            <div class="input-icon-group" style="margin-bottom:0;">
                                 <i class="fas fa-key input-icon"></i>
                                 <input type="password" placeholder="كلمة مرور المحفظة / PIN">
                             </div>
                         </div>
 
-                        <button type="submit" class="btn-pay-blue" style="margin-top: 1.5rem;">
+                        <button type="submit" class="btn-pay-blue" style="margin-top: 1rem;">
                             <i class="fas fa-lock"></i> <span id="btnPayText">Pay 0 EGP</span>
                         </button>
                     </div>
@@ -573,6 +660,7 @@
         </section>
     </main>
 
+    
     <main class="page" id="myOrdersPage">
         <section class="section">
             <div class="section-header">
@@ -583,9 +671,10 @@
         </section>
     </main>
 
+   
     <main class="page" id="adminPage">
         <div class="admin-container">
-            <div class="section-header" style="margin-bottom: 1.5rem;">
+            <div class="section-header" style="margin-bottom: 1rem;">
                 <h2 class="section-title" id="adminTitle">لوحة تحكم الأدمن</h2>
                 <p class="section-subtitle" id="adminSub">إدارة المنتجات، أكواد المدرسين، ومستخدمي النظام بالكامل</p>
             </div>
@@ -594,36 +683,36 @@
                 <div class="admin-stat-card">
                     <div class="admin-stat-icon"><i class="fas fa-users"></i></div>
                     <div>
-                        <div style="font-size: 1.5rem; font-weight: 800;" id="statTotalUsers">4</div>
-                        <div style="font-size: 0.8rem; color: var(--text-muted);" id="adminStat1">إجمالي المستخدمين</div>
+                        <div style="font-size: 1.2rem; font-weight: 800;" id="statTotalUsers">4</div>
+                        <div style="font-size: 0.7rem; color: var(--text-muted);" id="adminStat1">إجمالي المستخدمين</div>
                     </div>
                 </div>
                 <div class="admin-stat-card">
                     <div class="admin-stat-icon"><i class="fas fa-book"></i></div>
                     <div>
-                        <div style="font-size: 1.5rem; font-weight: 800;" id="statTotalBooks">3</div>
-                        <div style="font-size: 0.8rem; color: var(--text-muted);" id="adminStat2">إجمالي الكتب</div>
+                        <div style="font-size: 1.2rem; font-weight: 800;" id="statTotalBooks">3</div>
+                        <div style="font-size: 0.7rem; color: var(--text-muted);" id="adminStat2">إجمالي الكتب</div>
                     </div>
                 </div>
                 <div class="admin-stat-card">
                     <div class="admin-stat-icon"><i class="fas fa-key"></i></div>
                     <div>
-                        <div style="font-size: 1.5rem; font-weight: 800;" id="statTotalCodes">3</div>
-                        <div style="font-size: 0.8rem; color: var(--text-muted);" id="adminStat3">الأكواد المتاحة</div>
+                        <div style="font-size: 1.2rem; font-weight: 800;" id="statTotalCodes">3</div>
+                        <div style="font-size: 0.7rem; color: var(--text-muted);" id="adminStat3">الأكواد المتاحة</div>
                     </div>
                 </div>
             </div>
 
             <div class="admin-tabs">
-                <button class="admin-tab-btn active" onclick="switchAdminTab('usersTab', this)" id="admTab1"><i class="fas fa-users-cog"></i> إدارة المستخدمين</button>
-                <button class="admin-tab-btn" onclick="switchAdminTab('productsTab', this)" id="admTab2"><i class="fas fa-book-medical"></i> إدارة الكتب والملخصات</button>
-                <button class="admin-tab-btn" onclick="switchAdminTab('codesTab', this)" id="admTab3"><i class="fas fa-key"></i> إدارة أكواد المدرسين</button>
-                <button class="admin-tab-btn" onclick="switchAdminTab('notifTab', this)" id="admTab4"><i class="fas fa-bell"></i> إدارة الإشعارات 🔔</button>
+                <button class="admin-tab-btn active" onclick="switchAdminTab('usersTab', this)" id="admTab1"><i class="fas fa-users-cog"></i> المستخدمين</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('productsTab', this)" id="admTab2"><i class="fas fa-book-medical"></i> الكتب والملخصات</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('codesTab', this)" id="admTab3"><i class="fas fa-key"></i> أكواد المدرسين</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('notifTab', this)" id="admTab4"><i class="fas fa-bell"></i> الإشعارات 🔔</button>
             </div>
 
             <div class="admin-panel-content active" id="usersTab">
                 <div class="admin-card-box">
-                    <h3 id="admUsersTitle" style="font-size: 1.1rem; margin-bottom: 1rem;"><i class="fas fa-shield-alt" style="color: var(--accent);"></i> قائمة مستخدمي المنصة والصلاحيات</h3>
+                    <h3 id="admUsersTitle" style="font-size: 1rem; margin-bottom: 0.8rem;"><i class="fas fa-shield-alt" style="color: var(--accent);"></i> قائمة مستخدمي المنصة والصلاحيات</h3>
                     <div style="overflow-x: auto;">
                         <table class="admin-table">
                             <thead>
@@ -642,52 +731,75 @@
 
             <div class="admin-panel-content" id="productsTab">
                 <div class="admin-card-box">
-                    <h3 id="admBookAddTitle" style="font-size: 1.1rem; margin-bottom: 1rem;"><i class="fas fa-plus-circle" style="color: var(--accent);"></i> إضافة كتاب أو ملزمة جديدة للمكتبة</h3>
+                    <h3 id="admBookAddTitle" style="font-size: 1rem; margin-bottom: 0.8rem;"><i class="fas fa-plus-circle" style="color: var(--accent);"></i> إضافة كتاب أو ملزمة جديدة للمكتبة</h3>
                     <form onsubmit="handleAddBook(event)">
-                        <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
-                            <div class="input-icon-group">
+                        <div style="display:grid; grid-template-columns:1fr; gap:0.8rem; margin-bottom:0.8rem;">
+                            <div class="input-icon-group" style="margin-bottom:0;">
                                 <input type="text" id="newBookTitle" required placeholder="عنوان الكتاب / الملزمة *">
                             </div>
-                            <div class="input-icon-group">
+                            <div class="input-icon-group" style="margin-bottom:0;">
                                 <input type="number" id="newBookPrice" required placeholder="السعر (ج.م) *">
                             </div>
                         </div>
-                        <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
-                            <div class="input-icon-group">
+                        <div style="display:grid; grid-template-columns:1fr; gap:0.8rem; margin-bottom:0.8rem;">
+                            <div class="input-icon-group" style="margin-bottom:0;">
                                 <select id="newBookCategory" required>
-                                    <option value="physics" id="optCatPhys">الفيزياء</option>
-                                    <option value="math" id="optCatMath">الرياضيات</option>
-                                    <option value="chemistry" id="optCatChem">الكيمياء</option>
+                                    <option value="arabic">عربي</option>
+                                    <option value="chemistry">كيمياء</option>
+                                    <option value="english">انجليش</option>
+                                    <option value="history">تاريخ</option>
+                                    <option value="math">ماث / رياضيات</option>
+                                    <option value="physics">فيزياء</option>
+                                    <option value="programming">برمجه</option>
+                                    <option value="biology">بايو / أحياء</option>
                                 </select>
                             </div>
-                            <div class="input-icon-group">
-                                <select id="newBookTeacher" required style="width:100%; padding:0.85rem; border-radius:10px; background:var(--bg-body); border:1px solid var(--glass-border); color:var(--text-main);">
-                                    <option value="mohamed_abdelmaboud">مستر محمد عبد المعبود</option>
-                                    <option value="bassem_elnahas">دكتور باسم النحاس</option>
-                                    <option value="ahmed_essam">مستر أحمد عصام</option>
-                                    <option value="wessam_shata">دكتور وسام شطا</option>
+                            <div class="input-icon-group" style="margin-bottom:0;">
+                                <select id="newBookTeacher" required style="width:100%; padding:0.7rem; border-radius:10px; background:var(--bg-body); border:1px solid var(--glass-border); color:var(--text-main); font-size:0.85rem;">
+                                    <option value="mohamed_salah">محمد صلاح</option>
+                                    <option value="joseph_adel">جوزيف عادل</option>
+                                    <option value="mahmoud_radwan">محمود رضوان</option>
+                                    <option value="sayed_eliraqy">سيد العراقي</option>
+                                    <option value="osama_saadallah">اسامه سعد الله</option>
+                                    <option value="abdallah_elhabshy">عبدالله الحبشي</option>
+                                    <option value="ashraf_hossam">اشرف حسام</option>
+                                    <option value="mohamed_kilany">محمد كيلاني</option>
+                                    <option value="kamal_elmarakby">كمال المراكبي</option>
+                                    <option value="joseph_anwar">جوزيف انور</option>
+                                    <option value="ahmed_elbasha">احمد الباشا</option>
+                                    <option value="alaa_foda">علاء فوده</option>
+                                    <option value="islam_salama">اسلام سلامه</option>
+                                    <option value="mohamed_eady">محمد عادل</option>
+                                    <option value="mena_hanna">مينا حنا</option>
+                                    <option value="mai_tahoon">مي طاحون</option>
+                                    <option value="raymon_safwat">ريمون صفوت</option>
+                                    <option value="mohamed_tareq">محمد طارق</option>
+                                    <option value="tamy_elkady">تامر القاضي</option>
+                                    <option value="ibrahim_elshaer">ابراهيم الشاعر</option>
+                                    <option value="mahmoud_magdy">محمود مجدي</option>
+                                    <option value="nour_islam">نور اسلام</option>
                                 </select>
                             </div>
                         </div>
 
-                        <div class="input-icon-group" style="background: var(--bg-body); padding: 1rem; border-radius: 10px; border: 1px dashed var(--glass-border);">
-                            <label id="lblBookImg" style="display: block; font-size: 0.88rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--accent);">
+                        <div class="input-icon-group" style="background: var(--bg-body); padding: 0.8rem; border-radius: 10px; border: 1px dashed var(--glass-border); margin-bottom: 0.8rem;">
+                            <label id="lblBookImg" style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.3rem; color: var(--accent);">
                                 <i class="fas fa-image"></i> اختر صورة الكتاب
                             </label>
                             <input type="file" id="newBookImageFile" accept="image/*" required style="background: transparent; border: none; padding: 0;" onchange="previewBookImage(event)">
-                            <div id="bookImagePreviewContainer" style="margin-top: 10px; display: none;">
-                                <img id="bookImgPreviewTag" src="" alt="Preview" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px; border: 1px solid var(--glass-border);">
+                            <div id="bookImagePreviewContainer" style="margin-top: 6px; display: none;">
+                                <img id="bookImgPreviewTag" src="" alt="Preview" style="width: 60px; height: 60px; object-fit: cover; border-radius: 6px; border: 1px solid var(--glass-border);">
                             </div>
                         </div>
 
-                        <button type="submit" id="btnAddBookSubmit" class="btn-pay-blue" style="margin-top: 1rem; width: auto; padding: 0.75rem 1.5rem;">
+                        <button type="submit" id="btnAddBookSubmit" class="btn-pay-blue" style="width: 100%; padding: 0.65rem 1rem;">
                             <i class="fas fa-plus"></i> إضافة الكتاب للمتجر
                         </button>
                     </form>
                 </div>
 
                 <div class="admin-card-box">
-                    <h3 id="admBooksListTitle" style="font-size: 1.1rem; margin-bottom: 1rem;"><i class="fas fa-list" style="color: var(--accent);"></i> قائمة الكتب الحالية وإدارتها</h3>
+                    <h3 id="admBooksListTitle" style="font-size: 1rem; margin-bottom: 0.8rem;"><i class="fas fa-list" style="color: var(--accent);"></i> قائمة الكتب الحالية وإدارتها</h3>
                     <div style="overflow-x: auto;">
                         <table class="admin-table">
                             <thead>
@@ -707,52 +819,75 @@
 
             <div class="admin-panel-content" id="codesTab">
                 <div class="admin-card-box">
-                    <h3 id="admCodeAddTitle" style="font-size: 1.1rem; margin-bottom: 1rem;"><i class="fas fa-bolt" style="color: var(--accent);"></i> إضافة كود مدرس جديد</h3>
+                    <h3 id="admCodeAddTitle" style="font-size: 1rem; margin-bottom: 0.8rem;"><i class="fas fa-bolt" style="color: var(--accent);"></i> إضافة كود مدرس جديد</h3>
                     <form onsubmit="handleAddCode(event)">
-                        <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
-                            <div class="input-icon-group">
+                        <div style="display:grid; grid-template-columns:1fr; gap:0.8rem; margin-bottom:0.8rem;">
+                            <div class="input-icon-group" style="margin-bottom:0;">
                                 <input type="text" id="newCodeTitle" required placeholder="عنوان الكود / المحاضرة *">
                             </div>
-                            <div class="input-icon-group">
+                            <div class="input-icon-group" style="margin-bottom:0;">
                                 <input type="number" id="newCodePrice" required placeholder="السعر (ج.م) *">
                             </div>
                         </div>
-                        <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
-                            <div class="input-icon-group">
+                        <div style="display:grid; grid-template-columns:1fr; gap:0.8rem; margin-bottom:0.8rem;">
+                            <div class="input-icon-group" style="margin-bottom:0;">
                                 <select id="newCodeCategory" required>
-                                    <option value="physics" id="optCodeCatPhys">فيزياء</option>
-                                    <option value="math" id="optCodeCatMath">رياضيات</option>
-                                    <option value="chemistry" id="optCodeCatChem">كيمياء</option>
+                                    <option value="arabic">عربي</option>
+                                    <option value="chemistry">كيمياء</option>
+                                    <option value="english">انجليش</option>
+                                    <option value="history">تاريخ</option>
+                                    <option value="math">ماث / رياضيات</option>
+                                    <option value="physics">فيزياء</option>
+                                    <option value="programming">برمجه</option>
+                                    <option value="biology">بايو / أحياء</option>
                                 </select>
                             </div>
-                            <div class="input-icon-group">
-                                <select id="newCodeTeacher" required style="width:100%; padding:0.85rem; border-radius:10px; background:var(--bg-body); border:1px solid var(--glass-border); color:var(--text-main);">
-                                    <option value="mohamed_abdelmaboud">مستر محمد عبد المعبود</option>
-                                    <option value="bassem_elnahas">دكتور باسم النحاس</option>
-                                    <option value="ahmed_essam">مستر أحمد عصام</option>
-                                    <option value="wessam_shata">دكتور وسام شطا</option>
+                            <div class="input-icon-group" style="margin-bottom:0;">
+                                <select id="newCodeTeacher" required style="width:100%; padding:0.7rem; border-radius:10px; background:var(--bg-body); border:1px solid var(--glass-border); color:var(--text-main); font-size:0.85rem;">
+                                    <option value="mohamed_salah">محمد صلاح</option>
+                                    <option value="joseph_adel">جوزيف عادل</option>
+                                    <option value="mahmoud_radwan">محمود رضوان</option>
+                                    <option value="sayed_eliraqy">سيد العراقي</option>
+                                    <option value="osama_saadallah">اسامه سعد الله</option>
+                                    <option value="abdallah_elhabshy">عبدالله الحبشي</option>
+                                    <option value="ashraf_hossam">اشرف حسام</option>
+                                    <option value="mohamed_kilany">محمد كيلاني</option>
+                                    <option value="kamal_elmarakby">كمال المراكبي</option>
+                                    <option value="joseph_anwar">جوزيف انور</option>
+                                    <option value="ahmed_elbasha">احمد الباشا</option>
+                                    <option value="alaa_foda">علاء فوده</option>
+                                    <option value="islam_salama">اسلام سلامه</option>
+                                    <option value="mohamed_eady">محمد عادل</option>
+                                    <option value="mena_hanna">مينا حنا</option>
+                                    <option value="mai_tahoon">مي طاحون</option>
+                                    <option value="raymon_safwat">ريمون صفوت</option>
+                                    <option value="mohamed_tareq">محمد طارق</option>
+                                    <option value="tamy_elkady">تامر القاضي</option>
+                                    <option value="ibrahim_elshaer">ابراهيم الشاعر</option>
+                                    <option value="mahmoud_magdy">محمود مجدي</option>
+                                    <option value="nour_islam">نور اسلام</option>
                                 </select>
                             </div>
                         </div>
 
-                        <div class="input-icon-group" style="background: var(--bg-body); padding: 1rem; border-radius: 10px; border: 1px dashed var(--glass-border);">
-                            <label id="lblCodeImg" style="display: block; font-size: 0.88rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--accent);">
-                                <i class="fas fa-image"></i> اختر صورة الغلاف للكود/المحاضرة 
+                        <div class="input-icon-group" style="background: var(--bg-body); padding: 0.8rem; border-radius: 10px; border: 1px dashed var(--glass-border); margin-bottom: 0.8rem;">
+                            <label id="lblCodeImg" style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.3rem; color: var(--accent);">
+                                <i class="fas fa-image"></i> اختر صورة الغلاف للكود/المحاضرة
                             </label>
                             <input type="file" id="newCodeImageFile" accept="image/*" required style="background: transparent; border: none; padding: 0;" onchange="previewCodeImage(event)">
-                            <div id="codeImagePreviewContainer" style="margin-top: 10px; display: none;">
-                                <img id="codeImgPreviewTag" src="" alt="Preview" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px; border: 1px solid var(--glass-border);">
+                            <div id="codeImagePreviewContainer" style="margin-top: 6px; display: none;">
+                                <img id="codeImgPreviewTag" src="" alt="Preview" style="width: 60px; height: 60px; object-fit: cover; border-radius: 6px; border: 1px solid var(--glass-border);">
                             </div>
                         </div>
 
-                        <button type="submit" id="btnAddCodeSubmit" class="btn-pay-blue" style="margin-top: 1rem; width: auto; padding: 0.75rem 1.5rem;">
+                        <button type="submit" id="btnAddCodeSubmit" class="btn-pay-blue" style="width: 100%; padding: 0.65rem 1rem;">
                             <i class="fas fa-plus"></i> إضافة الكود للمتجر
                         </button>
                     </form>
                 </div>
 
                 <div class="admin-card-box">
-                    <h3 id="admCodesListTitle" style="font-size: 1.1rem; margin-bottom: 1rem;"><i class="fas fa-list" style="color: var(--accent);"></i> قائمة أكواد المدرسين الحالية وإدارتها</h3>
+                    <h3 id="admCodesListTitle" style="font-size: 1rem; margin-bottom: 0.8rem;"><i class="fas fa-list" style="color: var(--accent);"></i> قائمة أكواد المدرسين الحالية وإدارتها</h3>
                     <div style="overflow-x: auto;">
                         <table class="admin-table">
                             <thead>
@@ -772,109 +907,84 @@
 
             <div class="admin-panel-content" id="notifTab">
                 <div class="admin-card-box">
-                    <h3 style="font-size: 1.1rem; margin-bottom: 1rem;"><i class="fas fa-bullhorn" style="color: var(--accent);"></i> نشر إشعار أو تنبيه جديد للطلاب</h3>
+                    <h3 id="admNotifHeading" style="font-size: 1rem; margin-bottom: 0.8rem;"><i class="fas fa-bullhorn" style="color: var(--accent);"></i> نشر إشعار أو تنبيه جديد للطلاب</h3>
                     <form onsubmit="handleAdminSendNotification(event)">
-                        <div class="input-icon-group">
-                            <textarea id="adminNotifText" rows="4" required placeholder="اكتب نص التنبيه أو الإشعار المهم هنا ليظهر لجميع الطلاب في القائمة والبار العلوي..." style="resize: vertical;"></textarea>
+                        <div class="input-icon-group" style="margin-bottom: 0.8rem;">
+                            <textarea id="adminNotifText" rows="3" required placeholder="اكتب نص التنبيه أو الإشعار المهم هنا..." style="resize: vertical;"></textarea>
                         </div>
-                        <button type="submit" class="btn-pay-blue" style="width: auto; padding: 0.75rem 1.5rem;">
+                        <button type="submit" id="admNotifSubmitBtn" class="btn-pay-blue" style="width: 100%; padding: 0.65rem 1rem;">
                             <i class="fas fa-paper-plane"></i> نشر الإشعار فوراً
                         </button>
                     </form>
                 </div>
             </div>
-
         </div>
     </main>
 
+    
     <main class="page" id="contactPage">
         <section class="section" style="max-width: 1100px; margin: 0 auto;">
-            <div class="section-header" style="margin-bottom: 3rem;">
-                <h2 class="section-title">اتصل بنا</h2>
-                <p class="section-subtitle">نحن هنا دائماً للإجابة على استفساراتك وخدمتك بأفضل شكل ممكن</p>
+            <div class="section-header" style="margin-bottom: 1.5rem;">
+                <h2 class="section-title" id="contactTitle">اتصل بنا</h2>
+                <p class="section-subtitle" id="contactSub">نحن هنا دائماً للإجابة على استفساراتك وخدمتك بأفضل شكل ممكن</p>
             </div>
 
-            <div style="display: grid; grid-template-columns: 350px 1fr; gap: 2rem; align-items: start;" class="contact-grid-layout">
-                <div class="checkout-card" style="padding: 2rem 1.5rem;">
-                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.8rem; padding-bottom: 1rem; border-bottom: 1px solid var(--glass-border);">
+            <div style="display: grid; grid-template-columns: 1fr; gap: 1.2rem; align-items: start;">
+                <div class="checkout-card" style="padding: 1.2rem;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; padding-bottom: 0.8rem; border-bottom: 1px solid var(--glass-border);">
                         <div style="text-align: right;">
-                            <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">البريد الإلكتروني</div>
-                            <div style="font-size: 0.95rem; font-weight: 700; color: var(--accent); margin-top: 2px;">support@ilearnstore.com</div>
+                            <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: 600;" id="cEmailLbl">البريد الإلكتروني</div>
+                            <div style="font-size: 0.85rem; font-weight: 700; color: var(--accent); margin-top: 2px;">support@kaafstore.com</div>
                         </div>
-                        <div style="width: 42px; height: 42px; border-radius: 50%; background: rgba(255, 107, 53, 0.15); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1.1rem;">
+                        <div style="width: 35px; height: 35px; border-radius: 50%; background: rgba(157, 78, 221, 0.15); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 0.9rem;">
                             <i class="fas fa-envelope"></i>
                         </div>
                     </div>
 
-                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.8rem; padding-bottom: 1rem; border-bottom: 1px solid var(--glass-border);">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; padding-bottom: 0.8rem; border-bottom: 1px solid var(--glass-border);">
                         <div style="text-align: right;">
-                            <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">خدمة العملاء / واتساب</div>
-                            <div style="font-size: 0.95rem; font-weight: 700; color: var(--accent); margin-top: 2px;" dir="ltr">0000 000 100 20+</div>
+                            <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: 600;" id="cPhoneLbl">خدمة العملاء / واتساب</div>
+                            <div style="font-size: 0.85rem; font-weight: 700; color: var(--accent); margin-top: 2px;" dir="ltr">0000 000 100 20+</div>
                         </div>
-                        <div style="width: 42px; height: 42px; border-radius: 50%; background: rgba(255, 107, 53, 0.15); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1.1rem;">
+                        <div style="width: 35px; height: 35px; border-radius: 50%; background: rgba(157, 78, 221, 0.15); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 0.9rem;">
                             <i class="fas fa-phone-alt"></i>
                         </div>
                     </div>
 
-                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem;">
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
                         <div style="text-align: right;">
-                            <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">العنوان المقر الرئيسي</div>
-                            <div style="font-size: 0.95rem; font-weight: 700; color: var(--accent); margin-top: 2px;">القاهرة، مصر</div>
+                            <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: 600;" id="cAddrLbl">العنوان المقر الرئيسي</div>
+                            <div style="font-size: 0.85rem; font-weight: 700; color: var(--accent); margin-top: 2px;" id="cAddrVal">القاهرة، مصر</div>
                         </div>
-                        <div style="width: 42px; height: 42px; border-radius: 50%; background: rgba(255, 107, 53, 0.15); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1.1rem;">
+                        <div style="width: 35px; height: 35px; border-radius: 50%; background: rgba(157, 78, 221, 0.15); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 0.9rem;">
                             <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                    </div>
-
-                    <div style="border-top: 1px solid var(--glass-border); padding-top: 1.5rem; text-align: center;">
-                        <div style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 1rem;">يمكنك أيضاً متابعتنا والتواصل معنا عبر:</div>
-                        <div style="display: flex; justify-content: center; gap: 10px;">
-                            <a href="#" class="footer-social-btn"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="footer-social-btn"><i class="fab fa-whatsapp"></i></a>
-                            <a href="#" class="footer-social-btn"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>
 
-                <div class="checkout-card" style="padding: 2.5rem;">
-                    <p style="font-size: 0.9rem; color: var(--text-sub); line-height: 1.7; margin-bottom: 1.8rem; text-align: right;">
-                        يمكنك إرسال استفساراتك عن الطلبات أو المنتجات عبر ملء النموذج أدناه وسيقوم فريق الدعم بالرد عليك في أقرب وقت.
-                    </p>
-
+                <div class="checkout-card" style="padding: 1.2rem;">
                     <form onsubmit="handleContactFormSubmit(event)">
-                        <div style="margin-bottom: 1.2rem; text-align: right;">
-                            <label style="display: block; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.5rem;">الاسم بالكامل</label>
-                            <input type="text" required placeholder="أدخل اسمك" style="width: 100%; padding: 0.85rem 1rem; border-radius: 10px; border: 1px solid var(--glass-border); background: var(--bg-body); color: var(--text-main); font-family: inherit; font-size: 0.9rem;">
+                        <div style="margin-bottom: 0.9rem; text-align: right;">
+                            <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.3rem;" id="contactLblName">الاسم بالكامل</label>
+                            <input type="text" required placeholder="أدخل اسمك" id="contactInName" style="width: 100%; padding: 0.7rem 0.9rem; border-radius: 10px; border: 1px solid var(--glass-border); background: var(--bg-body); color: var(--text-main); font-family: inherit; font-size: 0.85rem;">
                         </div>
 
-                        <div style="margin-bottom: 1.2rem; text-align: right;">
-                            <label style="display: block; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.5rem;">البريد الإلكتروني</label>
-                            <input type="email" required placeholder="أدخل بريدك الإلكتروني" style="width: 100%; padding: 0.85rem 1rem; border-radius: 10px; border: 1px solid var(--glass-border); background: var(--bg-body); color: var(--text-main); font-family: inherit; font-size: 0.9rem;">
+                        <div style="margin-bottom: 0.9rem; text-align: right;">
+                            <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.3rem;" id="contactLblEmail">البريد الإلكتروني</label>
+                            <input type="email" required placeholder="أدخل بريدك الإلكتروني" id="contactInEmail" style="width: 100%; padding: 0.7rem 0.9rem; border-radius: 10px; border: 1px solid var(--glass-border); background: var(--bg-body); color: var(--text-main); font-family: inherit; font-size: 0.85rem;">
                         </div>
 
-                        <div style="margin-bottom: 1.2rem; text-align: right;">
-                            <label style="display: block; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.5rem;">رقم الهاتف / الواتساب</label>
-                            <div style="display: flex; gap: 8px;">
-                                <input type="tel" required placeholder="1xxxxxxxx" style="flex-grow: 1; padding: 0.85rem 1rem; border-radius: 10px; border: 1px solid var(--glass-border); background: var(--bg-body); color: var(--text-main); font-family: inherit; font-size: 0.9rem;" dir="ltr">
-                                <div style="display: flex; align-items: center; gap: 5px; padding: 0 12px; background: var(--bg-body); border: 1px solid var(--glass-border); border-radius: 10px; font-weight: 700; font-size: 0.9rem;">
-                                    <span>20+</span>
-                                    <span>🇪🇬</span>
-                                    <i class="fas fa-chevron-down" style="font-size: 0.75rem; color: var(--text-muted);"></i>
-                                </div>
-                            </div>
+                        <div style="margin-bottom: 0.9rem; text-align: right;">
+                            <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.3rem;" id="contactLblSubj">موضوع الاستفسار</label>
+                            <input type="text" required placeholder="أدخل موضوع الرسالة" id="contactInSubj" style="width: 100%; padding: 0.7rem 0.9rem; border-radius: 10px; border: 1px solid var(--glass-border); background: var(--bg-body); color: var(--text-main); font-family: inherit; font-size: 0.85rem;">
                         </div>
 
-                        <div style="margin-bottom: 1.2rem; text-align: right;">
-                            <label style="display: block; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.5rem;">موضوع الاستفسار</label>
-                            <input type="text" required placeholder="أدخل موضوع الرسالة" style="width: 100%; padding: 0.85rem 1rem; border-radius: 10px; border: 1px solid var(--glass-border); background: var(--bg-body); color: var(--text-main); font-family: inherit; font-size: 0.9rem;">
+                        <div style="margin-bottom: 1rem; text-align: right;">
+                            <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.3rem;" id="contactLblMsg">تفاصيل الرسالة</label>
+                            <textarea rows="3" required placeholder="اكتب استفسارك هنا..." id="contactInMsg" style="width: 100%; padding: 0.7rem 0.9rem; border-radius: 10px; border: 1px solid var(--glass-border); background: var(--bg-body); color: var(--text-main); font-family: inherit; font-size: 0.85rem; resize: vertical;"></textarea>
                         </div>
 
-                        <div style="margin-bottom: 1.8rem; text-align: right;">
-                            <label style="display: block; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.5rem;">تفاصيل الرسالة</label>
-                            <textarea rows="4" required placeholder="اكتب استفسارك هنا..." style="width: 100%; padding: 0.85rem 1rem; border-radius: 10px; border: 1px solid var(--glass-border); background: var(--bg-body); color: var(--text-main); font-family: inherit; font-size: 0.9rem; resize: vertical;"></textarea>
-                        </div>
-
-                        <button type="submit" class="btn-submit-shipping" style="width: 100%; padding: 1rem; font-size: 1.05rem;">
+                        <button type="submit" id="contactSubmitBtn" class="btn-submit-shipping" style="width: 100%; padding: 0.75rem; font-size: 0.9rem;">
                             إرسال الرسالة
                         </button>
                     </form>
@@ -883,35 +993,36 @@
         </section>
     </main>
 
+    
     <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()">
         <div class="cart-drawer" onclick="event.stopPropagation()">
             <div>
-                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--glass-border); padding-bottom: 1rem;">
-                    <h3 id="cartDrawerTitle">سلة المشتريات</h3>
-                    <button onclick="toggleCart()" class="btn-icon" style="width: 32px; height: 32px;"><i class="fas fa-times"></i></button>
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--glass-border); padding-bottom: 0.8rem;">
+                    <h3 id="cartDrawerTitle" style="font-size: 1rem;">سلة المشتريات</h3>
+                    <button onclick="toggleCart()" class="btn-icon" style="width: 30px; height: 30px;"><i class="fas fa-times"></i></button>
                 </div>
                 <div class="cart-items-list" id="cartItemsList">
-                    <p id="cartEmptyText" style="text-align: center; color: var(--text-muted); margin-top: 2rem;">السلة فارغة حالياً</p>
+                    <p id="cartEmptyText" style="text-align: center; color: var(--text-muted); margin-top: 1.5rem; font-size: 0.8rem;">السلة فارغة حالياً</p>
                 </div>
             </div>
             <div>
-                <div style="border-top: 1px solid var(--glass-border); padding-top: 1rem; margin-bottom: 1rem;">
-                    <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 1.1rem;">
+                <div style="border-top: 1px solid var(--glass-border); padding-top: 0.8rem; margin-bottom: 0.8rem;">
+                    <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 0.95rem;">
                         <span id="cartTotalLbl">الإجمالي:</span>
                         <span id="drawerTotalPrice" style="color: var(--accent);">0 ج.م</span>
                     </div>
                 </div>
-                <button onclick="checkAuthAndProceed('shippingPage')" id="cartCheckoutBtn" class="btn-pay-blue" style="width: 100%;">إتمام شراء الكتب</button>
+                <button onclick="checkAuthAndProceed('shippingPage')" id="cartCheckoutBtn" class="btn-pay-blue" style="width: 100%; font-size: 0.9rem;">إتمام شراء الكتب</button>
             </div>
         </div>
     </div>
 
+    
     <footer class="footer">
         <div class="footer-content-grid">
             <div class="footer-col">
-                <div class="logo-3d" onclick="switchPage('homePage')" style="margin-bottom: 1rem;">
-                    <div class="logo-icon"><i class="fas fa-graduation-cap"></i></div>
-                    <div class="logo-text">KAAF <span>STORE</span></div>
+                <div class="logo-3d" onclick="switchPage('homePage')" style="margin-bottom: 0.8rem;">
+                    <img src="./IMG_9457.PNG" alt="KAAF STORE Logo" class="store-logo-img" style="height: 38px;">
                 </div>
                 <p id="footerDesc">المتجر الأول والرائد لتوفير الكتب الخارجية وملازم المدرسين وأكواد منصات الثانوية العامة في مصر فورياً وبأعلى جودة وسرعة تامة.</p>
                 <div class="footer-social-row">
@@ -958,13 +1069,12 @@
         </div>
 
         <div class="footer-bottom-bar">
-            <p id="fCopy">جميع الحقوق محفوظة © 2026 I-LEARN STORE</p>
-            <p id="fSub" style="color: var(--text-sub); font-size: 0.8rem;">صُمم خصيصاً لطلاب الثانوية العامة في مصر ⚡</p>
+            <p id="fCopy">جميع الحقوق محفوظة © 2026 KAAF STORE</p>
+            <p id="fSub" style="color: var(--text-sub); font-size: 0.72rem;">صُمم خصيصاً لطلاب الثانوية العامة في مصر ⚡</p>
         </div>
     </footer>
 
     <script src="./index.js"></script>
-      
-    
-</body>
+   </body>
 </html>
+      
